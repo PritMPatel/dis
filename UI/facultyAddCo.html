@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <!-- UIkit CSS -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+		<!-- UIkit CSS -->
     <link rel="stylesheet" href="css/uikit.min.css" />
     <!-- UIkit JS -->
     <script src="js/uikit.min.js"></script>
@@ -15,7 +16,7 @@
     <link href="./css/dashboard.css" rel="stylesheet" />
     <link href="./css/register.css" rel="stylesheet" />
     <script src="js/uikit-icons.min.js"></script>
-    <script src="js/jquery-3.2.1.min.js"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- <link rel="stylesheet" type="feather-icons" href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.7.3/feather.js"> -->
 </head>
@@ -78,7 +79,7 @@
 
 				</div>
 
-				<div class="col-sm-8 col-md-9 col-lg-10" style="margin: 0px; padding: 0px; width: 100%;">
+				<div class="col-sm-8 col-md-9 col-lg-10" style="margin-top: 12vh; padding: 0px; width: 100%;">
 					<div class="page">
 						<div class="page-single" style="width: 100%;">
 							<div class="container">
@@ -124,7 +125,37 @@
 
 												<div class="form-group">
 													<label class="form-label">No of CO</label>
-													<select class="form-control custom-select" id="coNo">
+													<div class="selectgroup w-100">
+														<label class="selectgroup-item">
+															<input type="radio" name="noCo" id="noCo" value="1" class="selectgroup-input">
+															<span class="selectgroup-button">I</span>
+														</label>
+														<label class="selectgroup-item">
+															<input type="radio" name="noCo" id="noCo" value="2" class="selectgroup-input">
+															<span class="selectgroup-button">II</span>
+														</label>
+														<label class="selectgroup-item">
+															<input type="radio" name="noCo" id="noCo" value="3" class="selectgroup-input">
+															<span class="selectgroup-button">III</span>
+														</label>
+														<label class="selectgroup-item">
+															<input type="radio" name="noCo" id="noCo" value="4" class="selectgroup-input">
+															<span class="selectgroup-button">IV</span>
+														</label>
+														<label class="selectgroup-item">
+															<input type="radio" name="noCo" id="noCo" value="5" class="selectgroup-input">
+															<span class="selectgroup-button">V</span>
+														</label>
+														<label class="selectgroup-item">
+															<input type="radio" name="noCo" id="noCo" value="6" class="selectgroup-input">
+															<span class="selectgroup-button">VI</span>
+														</label>
+													</div>
+												</div>
+
+												<!-- <div class="form-group">
+													<label class="form-label">No of CO</label>
+													<select class="form-control custom-select" id="noCo">
 														<option value="" disabled="" selected="">Select No of CO</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
@@ -133,42 +164,42 @@
 														<option value="5">5</option>
 														<option value="6">6</option>
 													</select>
-												</div>
+												</div> -->
 												
-												<div class="form-group" id="co1" style="display: none;">
+												<div class="form-group" name="co1" id="co1" style="display: none;">
 													<label class="form-label">CO Statement</label>
 													<textarea type="coStatement" class="form-control" id="coStatement1"
-														name="coStatement" aria-describedby="coStatement"
+														name="coStatement1" aria-describedby="coStatement"
 														placeholder="Enter CO Statement"></textarea>
 												</div>
-												<div class="form-group" id="co2" style="display: none;">
+												<div class="form-group" name="co2" id="co2" style="display: none;">
 													<label class="form-label">CO Statement</label>
 													<textarea type="coStatement" class="form-control" id="coStatement2"
-														name="coStatement" aria-describedby="coStatement"
+														name="coStatement2" aria-describedby="coStatement"
 														placeholder="Enter CO Statement"></textarea>
 												</div>
-												<div class="form-group" id="co3" style="display: none;">
+												<div class="form-group" name="co3" id="co3" style="display: none;">
 													<label class="form-label">CO Statement</label>
 													<textarea type="coStatement" class="form-control" id="coStatement3"
-														name="coStatement" aria-describedby="coStatement"
+														name="coStatement3" aria-describedby="coStatement"
 														placeholder="Enter CO Statement"></textarea>
 												</div>
-												<div class="form-group" id="co4" style="display: none;">
+												<div class="form-group" name="co4" id="co4" style="display: none;">
 													<label class="form-label">CO Statement</label>
 													<textarea type="coStatement" class="form-control" id="coStatement4"
-														name="coStatement" aria-describedby="coStatement"
+														name="coStatement4" aria-describedby="coStatement"
 														placeholder="Enter CO Statement"></textarea>
 												</div>
-												<div class="form-group" id="co5" style="display: none;">
+												<div class="form-group" name="co5" id="co5" style="display: none;">
 													<label class="form-label">CO Statement</label>
 													<textarea type="coStatement" class="form-control" id="coStatement5"
-														name="coStatement" aria-describedby="coStatement"
+														name="coStatement5" aria-describedby="coStatement"
 														placeholder="Enter CO Statement"></textarea>
 												</div>
-												<div class="form-group" id="co6" style="display: none;">
+												<div class="form-group" name="co6" id="co6" style="display: none;">
 													<label class="form-label">CO Statement</label>
 													<textarea type="coStatement" class="form-control" id="coStatement6"
-														name="coStatement" aria-describedby="coStatement"
+														name="coStatement6" aria-describedby="coStatement"
 														placeholder="Enter CO Statement"></textarea>
 												</div>
 
@@ -362,60 +393,60 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-													$(document).ready(function () {
-														$('#coNo').click(function () {
-															if ($(this).attr('id') == 'coNo' && $(this).attr('value') == 1) {
-																$('#co1').show();
-																$('#co2').hide();
-																$('#co3').hide();
-																$('#co4').hide();
-																$('#co5').hide();
-																$('#co6').hide();
-															}
-															else if ($(this).attr('id') == 'coNo' && $(this).attr('value') == 2) {
-																$('#co1').show();
-																$('#co2').show();
-																$('#co3').hide();
-																$('#co4').hide();
-																$('#co5').hide();
-																$('#co6').hide();
-															}
-															else if ($(this).attr('id') == 'coNo' && $(this).attr('value') == 3) {
-																$('#co1').show();
-																$('#co2').show();
-																$('#co3').show();
-																$('#co4').hide();
-																$('#co5').hide();
-																$('#co6').hide();
-															}
-															else if ($(this).attr('id') == 'coNo' && $(this).attr('value') == 4) {
-																$('#co1').show();
-																$('#co2').show();
-																$('#co3').show();
-																$('#co4').show();
-																$('#co5').hide();
-																$('#co6').hide();
-															}
-															else if ($(this).attr('id') == 'coNo' && $(this).attr('value') == 5) {
-																$('#co1').show();
-																$('#co2').show();
-																$('#co3').show();
-																$('#co4').show();
-																$('#co5').show();
-																$('#co6').hide();
-															}
-															else if ($(this).attr('id') == 'coNo' && $(this).attr('value') == 6) {
-																$('#co1').show();
-																$('#co2').show();
-																$('#co3').show();
-																$('#co4').show();
-																$('#co5').show();
-																$('#co6').show();
-															}
-															else { }
-														});
-													});
-												</script>
+		$(document).ready(function () {
+			$('input[type="radio"]').click(function () {
+				if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '1') {
+					$('#co1').show();
+					$('#co2').hide();
+					$('#co3').hide();
+					$('#co4').hide();
+					$('#co5').hide();
+					$('#co6').hide();
+				}
+				else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '2') {
+					$('#co1').show();
+					$('#co2').show();
+					$('#co3').hide();
+					$('#co4').hide();
+					$('#co5').hide();
+					$('#co6').hide();
+				}
+				else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '3') {
+					$('#co1').show();
+					$('#co2').show();
+					$('#co3').show();
+					$('#co4').hide();
+					$('#co5').hide();
+					$('#co6').hide();
+				}
+				else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '4') {
+					$('#co1').show();
+					$('#co2').show();
+					$('#co3').show();
+					$('#co4').show();
+					$('#co5').hide();
+					$('#co6').hide();
+				}
+				else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '5') {
+					$('#co1').show();
+					$('#co2').show();
+					$('#co3').show();
+					$('#co4').show();
+					$('#co5').show();
+					$('#co6').hide();
+				}
+				else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '6') {
+					$('#co1').show();
+					$('#co2').show();
+					$('#co3').show();
+					$('#co4').show();
+					$('#co5').show();
+					$('#co6').show();
+				}
+				else { }
+			});
+		});
+	</script>
 
 </body>
 

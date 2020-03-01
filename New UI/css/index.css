@@ -1,0 +1,25 @@
+.page {
+	height: 85vh;
+	background-color: #edf2fa ;
+}
+
+.header{
+	background-color: black ;
+}
+
+.uk-heading-divider{
+	margin: 0px ; 
+	padding: 0px ; 
+	border-color: black ;
+}
+
+.uk-heading-line{
+	margin: 10px ; 
+	padding: 4px ; 
+	color: white ; 
+	font-weight: lighter ;
+}
+
+a:hover{
+	text-decoration: none;
+}

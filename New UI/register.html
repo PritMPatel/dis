@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
+		<link rel="stylesheet" href="css/home.css"/> 
+		<link rel="stylesheet" href="css/dashboard.css"/> 
+	</head>
+	<title>Register</title>
+	<body>
+		<div class="bgimg-1">
+			
+			<div class="caption-img">
+				<a href="home.html">
+                    <img src="image/logo.png" style="margin-bottom: 20px;"/>
+                </a>
+			</div>
+			<div class="caption">
+				<span class="border-dte" style="color:white; font-size: 64px; font: 20px "Lato", sans-serif	;">DEPARTMENT INFORMATION SYSTEM</span>
+			</div>
+               
+		</div><a name="e"/>
+		<div class="bgimg-2">
+			<div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+				<h1 style="text-align:center; margin-bottom: 0px; padding-bottom: 0px;">Department Information System</h1>
+			</div>
+
+			<div class="page" style="margin-top: 2rem;">
+				<div class="page-single" style="width: 100%;">
+					<div class="container">
+						<div class="row">
+							<div class="col col-login mx-auto">
+								<form class="card" action="" method="post">
+									<div class="card-body p-6">
+										<div class="card-title">
+											<center>Register</center>
+										</div>
+										<!-- <div class="form-group">
+											<label class="form-label">You are</label>
+											<select class="form-control custom-select">
+												<option value="Faculty" selected="">Faculty</option>
+											</select>
+										</div> -->
+										<div class="form-group">
+											<!-- <label class="form-label">Name</label> -->
+											<input type="text" class="form-control" name="facultyName" id="name"
+											pattern="[a-zA-Z][a-zA-Z\s]*"
+												placeholder="Name">
+										</div>
+										<!-- <div class="form-group">
+											<label class="form-label">Gender</label>
+											<div class="selectgroup w-100">
+												<label class="selectgroup-item">
+													<input type="radio" name="facultyGender" value="female"
+														class="selectgroup-input">
+													<span class="selectgroup-button">Female</span>
+												</label>
+												<label class="selectgroup-item">
+													<input type="radio" name="facultyGender" value="male"
+														class="selectgroup-input">
+													<span class="selectgroup-button">Male</span>
+												</label>
+											</div>	
+										</div> -->
+										<div class="form-group">
+											<!-- <label class="form-label">Branch</label> -->
+											<select class="form-control custom-select">
+												<option value="" disabled="" selected="" hidden>Branch</option>
+												<option value="">Civil Engineering</option>
+												<option value="">Chemical Enginnering</option>
+												<option value="">Computer Engineering</option>
+												<option value="">Electrincal Enginnering</option>
+												<option value="">Electronics & Communication</option>
+												<option value="IT">Information Technology</option>
+												<option value="">Instrumentation & Control</option>
+												<option value="">Mechanical Engineering</option>
+												<option value="">Power Electronics</option>
+											</select>
+										</div>
+										
+										<!-- <div class="form-group">
+											<label class="form-label">Position</label>
+											<input type="text" class="form-control" name="facultyPosition" id="position"
+												placeholder="Position">
+										</div> -->
+										<div class="form-group">
+											<!-- <label class="form-label">Email Address</label> -->
+											<input type="text" class="form-control" name="facultyEmail" id="email"
+											pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+												placeholder="Email">
+										</div>
+										<!-- <div class="form-group">
+											<label class="form-label">Mobile No</label>
+											<input type="text" class="form-control" name="facultyMobile" id="mobile"
+											pattern="[0-9]{10}"
+												placeholder="Mobile No">
+										</div> -->
+										<div class="form-group">
+											<!-- <label class="form-label">Password</label> -->
+											<input type="password" class="form-control" name="facultyPassword" id="Password"
+											
+												placeholder="Password" onkeyup="checkPass(); return false;">
+										</div>
+										<!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" -->
+										<div class="form-group">
+											<!-- <label class="form-label">Confirm Password</label> -->
+											<input type="password" class="form-control" name="facultyConfirmPassword"
+												id="ConfirmPassword" placeholder="Confirm Password"
+												onkeyup="checkPass(); return false;">
+										</div>
+										<div class="form-footer">
+											<!-- <button type="submit" class="btn btn-primary btn-block" id="submit" disabled=""><a href="login.jsp" style="color: white;">Submit</a></button> -->
+											<button type="submit" class="btn btn-primary btn-block" id="submit" value="submit"
+												name="facultyRegisterSubmit">Submit</button>
+										</div>
+									</div>
+								</form>
+								<div class="text-center text-muted">
+									Already have an account? <a href="./home.html#e">Sign In</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="text-center" style="padding:50px 0;">
+
+				<div class="logo">Register</div>
+				
+				<div class="login-form-1">
+					<form id="login-form" class="text-left">
+						<div class="login-form-main-message"></div>
+						<div class="main-login-form" style="width: 400px;">
+							<div class="login-group">
+								<div class="form-group">
+									<label for="lg_username" class="sr-only">Name</label>
+									<input type="text" class="form-control" id="lg_name" name="lg_name" placeholder="Name"/>
+								</div>
+								<div class="form-group">
+									<label for="lg_username" class="sr-only">Department</label>
+									<input type="text" class="form-control" id="lg_email" name="lg_dept" placeholder="Department"/>
+								</div>
+								<div class="form-group">
+									<label for="lg_username" class="sr-only">Email</label>
+									<input type="text" class="form-control" id="lg_email" name="lg_email" placeholder="Email"/>
+								</div>
+								<div class="form-group">
+									<label for="lg_password" class="sr-only">Password</label>
+									<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="Password"/>
+								</div>
+								<div class="form-group">
+									<label for="lg_password" class="sr-only">Confirm Password</label>
+									<input type="password" class="form-control" id="lg_confpassword" name="lg_confpassword" placeholder="Confirm Password"/>
+								</div>
+
+							</div>
+							<button type="submit" class="login-button"><i class="fas fa-angle-right" style="font-size:40px;"></i></button>
+						</div>
+						<div class="etc-login-form text-center">
+							<p>Already Have an Account? <a href="home.html#e">Login </a></p>
+						</div>
+					</form>
+				</div>
+
+			</div> -->
+			<footer class="footer" style="margin-bottom: 0px; padding: 0px; position: fixed;">
+				<div class="container-fluid">
+					<span class="text-muted">IT DEPARTMENT @ VGEC</span>
+				</div>
+			</footer>
+			<script type="text/javascript">
+				function checkPass() {
+		
+					var pass1 = document.getElementById('Password');
+					var pass2 = document.getElementById('ConfirmPassword');
+					var b = document.getElementById('submit')
+		
+					if (pass1.value == 0) {
+						b.disabled = true;
+					} else if (pass1.value == pass2.value) {
+						pass2.classList.remove("state-invalid");
+						b.disabled = false;
+						pass2.classList.add("state-valid");
+					} else {
+						pass2.classList.remove("state-valid");
+						b.disabled = true;
+						pass2.classList.add("state-invalid");
+		
+					}
+				}  
+			</script>
+	</body>
+</html>
