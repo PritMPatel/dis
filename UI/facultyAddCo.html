@@ -3,10 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<script src="js/jquery-3.2.1.min.js"></script>
-		<!-- UIkit CSS -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- UIkit CSS -->
     <link rel="stylesheet" href="css/uikit.min.css" />
     <!-- UIkit JS -->
     <script src="js/uikit.min.js"></script>
@@ -20,77 +19,77 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- <link rel="stylesheet" type="feather-icons" href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.7.3/feather.js"> -->
 </head>
-<body style="height: vh;">
-	
-	<a href="index.html">
-		<div class="header" style="width: 100%; z-index: 980;" uk-sticky="">
-	        <h1 class="uk-heading-divider"></h1>
-	        <h1 class="uk-heading-line uk-text-center"><span>Department Information System</span></h1>
-	        <h1 class="uk-heading-divider"></h1>
-	    </div>
-	</a>
 
-	<div class="page" style="padding: 0px; margin: 0px; height: -webkit-fill-available; background-color: #edf2fa;">
-		<div class="container" style="padding: 0px; margin: 0px; height: -webkit-fill-available;">
-			<div class="row" style="height: -webkit-fill-available; width: 100%;padding: 0px; margin: 0px;">
-				<div class="col-sm-4 col-md-3 col-lg-2"
-					style="padding: 10px; margin-top: 0px; background-color: #b3d9ff; height: 100vh;">
-					<div class="col-lg order-lg-first">
-						<ul class="nav nav-tabs">
-							<li class="nav-item">
-								<a href="./facultyHome.html" class="nav-link"><i class="fe fe-home"></i> Home</a>
-							</li>
-							<li class="nav-item">
-								<a href="facultyAddExam.html" class="nav-link"><i class="fe fe-plus"></i> Add Exam</a>
-							</li>
-							<li class="nav-item">
-								<a href="facultyAddCo.html" class="nav-link active"><i class="fe fe-plus"></i> Add CO</a>
-							</li>
-							<li class="nav-item">
-								<a href="facultyAddMarks.html" class="nav-link"><i class="fe fe-plus"></i> Add Marks</a>
-							</li>
-							<li class="nav-item">
-								<a href="facultyVeiwStats.html" class="nav-link"><i class="fe fe-check-circle"></i> View Statistics</a>
-							</li>
-							<!-- <li class="nav-item">
+<body style="height: vh;">
+
+    <a href="index.html">
+        <div class="header" style="width: 100%; z-index: 980;" uk-sticky="">
+            <h1 class="uk-heading-divider"></h1>
+            <h1 class="uk-heading-line uk-text-center"><span>Department Information System</span></h1>
+            <h1 class="uk-heading-divider"></h1>
+        </div>
+    </a>
+
+    <div class="page" style="padding: 0px; margin: 0px; height: -webkit-fill-available; background-color: #edf2fa;">
+        <div class="container" style="padding: 0px; margin: 0px; height: -webkit-fill-available;">
+            <div class="row" style="height: -webkit-fill-available; width: 100%;padding: 0px; margin: 0px;">
+                <div class="col-sm-4 col-md-3 col-lg-2" style="padding: 10px; margin-top: 0px; background-color: #b3d9ff; height: 100vh;">
+                    <div class="col-lg order-lg-first">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a href="./facultyHome.html" class="nav-link"><i class="fe fe-home"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="facultyAddExam.html" class="nav-link"><i class="fe fe-plus"></i> Add Exam</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="facultyAddCo.html" class="nav-link active"><i class="fe fe-plus"></i> Add CO</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="facultyAddMarks.html" class="nav-link"><i class="fe fe-plus"></i> Add Marks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="facultyVeiwStats.html" class="nav-link"><i class="fe fe-check-circle"></i> View Statistics</a>
+                            </li>
+                            <!-- <li class="nav-item">
 								<a href="facultyLeaveRequests.jsp" class="nav-link"><i class="fe fe-check-circle"></i>
 									Your Leaves</a>
 							</li>
 							<li class="nav-item">
 								<a href="" class="nav-link"><i class="fe fe-file"></i> View Report</a>
 							</li> -->
-							<li class="nav-item">
-								<a href="facultyEditProfile.html" class="nav-link"><i class="fe fe-user"></i> Edit
+                            <li class="nav-item">
+                                <a href="facultyEditProfile.html" class="nav-link"><i class="fe fe-user"></i> Edit
 									Profile</a>
-							</li>
+                            </li>
 
-							<li class="nav-item">
-								<a href="facultyChangePassword.html" class="nav-link"><i class="fe fe-lock"></i> Change
+                            <li class="nav-item">
+                                <a href="facultyChangePassword.html" class="nav-link"><i class="fe fe-lock"></i> Change
 									Password</a>
-							</li>
-							<li class="nav-item">
-								<a href="login.html" class="nav-link"><i class="fe fe-minus"></i> Logout</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm col-md col-lg" style="margin: 0px; padding: 0px; width: 100%; height: max-content;">
+                            </li>
+                            <li class="nav-item">
+                                <a href="login.html" class="nav-link"><i class="fe fe-minus"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm col-md col-lg" style="margin: 0px; padding: 0px; width: 100%; height: max-content;">
 
 
-				</div>
+                </div>
 
-				<div class="col-sm-8 col-md-9 col-lg-10" style="margin-top: 12vh; padding: 0px; width: 100%;">
-					<div class="page">
-						<div class="page-single" style="width: 100%;">
-							<div class="container">
-								<div class="row">
-									<div class="col col-login mx-auto">
-										<form class="card" action="" method="post" name="facultyApplyLeave">
-											<div class="card-body p-6">
-												<div class="card-title">
-													<center>Add Course Outcome</center>
-												</div>
-												<!-- <div class="form-group">
+                <div class="col-sm-8 col-md-9 col-lg-10" style="margin-top: 12vh; padding: 0px; width: 100%;">
+                    <div class="page">
+                        <div class="page-single" style="width: 100%;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col col-login mx-auto">
+                                        <form class="card" action="" method="post" name="facultyApplyLeave">
+                                            <div class="card-body p-6">
+                                                <div class="card-title">
+                                                    <center>Add Course Outcome</center>
+                                                </div>
+                                                <!-- <div class="form-group">
 													<label class="form-label">Type of Leave</label>
 													<select class="form-control custom-select" id="roleSelect">
 														<option value="Casual Leave">Casual Leave</option>
@@ -101,7 +100,7 @@
 														<option value="Medical Leave">Medical Leave</option>
 													</select>
 												</div> -->
-<!-- 												<div class="form-group">
+                                                <!-- 												<div class="form-group">
 													<label class="form-label">Exam Category</label>
 													<select class="form-control custom-select">
 														<option value="" disabled="" selected="">Select Exam Category</option>
@@ -112,48 +111,48 @@
 													</select>
 												</div>
  -->
-												<div class="form-group">
-													<label class="form-label">Subject</label>
-													<select class="form-control custom-select">
+                                                <div class="form-group">
+                                                    <label class="form-label">Subject</label>
+                                                    <select class="form-control custom-select">
 														<option value="" disabled="" selected="">Select Subject</option>
 														<option value="">Subject 1</option>
 														<option value="">Subject 2</option>
 														<option value="">Subject 3</option>
 														<option value="">Subject 4</option>
 													</select>
-												</div>
+                                                </div>
 
-												<div class="form-group">
-													<label class="form-label">No of CO</label>
-													<div class="selectgroup w-100">
-														<label class="selectgroup-item">
+                                                <div class="form-group">
+                                                    <label class="form-label">No of CO</label>
+                                                    <div class="selectgroup w-100">
+                                                        <label class="selectgroup-item">
 															<input type="radio" name="noCo" id="noCo" value="1" class="selectgroup-input">
 															<span class="selectgroup-button">I</span>
 														</label>
-														<label class="selectgroup-item">
+                                                        <label class="selectgroup-item">
 															<input type="radio" name="noCo" id="noCo" value="2" class="selectgroup-input">
 															<span class="selectgroup-button">II</span>
 														</label>
-														<label class="selectgroup-item">
+                                                        <label class="selectgroup-item">
 															<input type="radio" name="noCo" id="noCo" value="3" class="selectgroup-input">
 															<span class="selectgroup-button">III</span>
 														</label>
-														<label class="selectgroup-item">
+                                                        <label class="selectgroup-item">
 															<input type="radio" name="noCo" id="noCo" value="4" class="selectgroup-input">
 															<span class="selectgroup-button">IV</span>
 														</label>
-														<label class="selectgroup-item">
+                                                        <label class="selectgroup-item">
 															<input type="radio" name="noCo" id="noCo" value="5" class="selectgroup-input">
 															<span class="selectgroup-button">V</span>
 														</label>
-														<label class="selectgroup-item">
+                                                        <label class="selectgroup-item">
 															<input type="radio" name="noCo" id="noCo" value="6" class="selectgroup-input">
 															<span class="selectgroup-button">VI</span>
 														</label>
-													</div>
-												</div>
+                                                    </div>
+                                                </div>
 
-												<!-- <div class="form-group">
+                                                <!-- <div class="form-group">
 													<label class="form-label">No of CO</label>
 													<select class="form-control custom-select" id="noCo">
 														<option value="" disabled="" selected="">Select No of CO</option>
@@ -165,46 +164,34 @@
 														<option value="6">6</option>
 													</select>
 												</div> -->
-												
-												<div class="form-group" name="co1" id="co1" style="display: none;">
-													<label class="form-label">CO Statement</label>
-													<textarea type="coStatement" class="form-control" id="coStatement1"
-														name="coStatement1" aria-describedby="coStatement"
-														placeholder="Enter CO Statement"></textarea>
-												</div>
-												<div class="form-group" name="co2" id="co2" style="display: none;">
-													<label class="form-label">CO Statement</label>
-													<textarea type="coStatement" class="form-control" id="coStatement2"
-														name="coStatement2" aria-describedby="coStatement"
-														placeholder="Enter CO Statement"></textarea>
-												</div>
-												<div class="form-group" name="co3" id="co3" style="display: none;">
-													<label class="form-label">CO Statement</label>
-													<textarea type="coStatement" class="form-control" id="coStatement3"
-														name="coStatement3" aria-describedby="coStatement"
-														placeholder="Enter CO Statement"></textarea>
-												</div>
-												<div class="form-group" name="co4" id="co4" style="display: none;">
-													<label class="form-label">CO Statement</label>
-													<textarea type="coStatement" class="form-control" id="coStatement4"
-														name="coStatement4" aria-describedby="coStatement"
-														placeholder="Enter CO Statement"></textarea>
-												</div>
-												<div class="form-group" name="co5" id="co5" style="display: none;">
-													<label class="form-label">CO Statement</label>
-													<textarea type="coStatement" class="form-control" id="coStatement5"
-														name="coStatement5" aria-describedby="coStatement"
-														placeholder="Enter CO Statement"></textarea>
-												</div>
-												<div class="form-group" name="co6" id="co6" style="display: none;">
-													<label class="form-label">CO Statement</label>
-													<textarea type="coStatement" class="form-control" id="coStatement6"
-														name="coStatement6" aria-describedby="coStatement"
-														placeholder="Enter CO Statement"></textarea>
-												</div>
 
-												
-												<!-- <div class="form-group">
+                                                <div class="form-group" name="co1" id="co1" style="display: none;">
+                                                    <label class="form-label">CO Statement</label>
+                                                    <textarea type="coStatement" class="form-control" id="coStatement1" name="coStatement1" aria-describedby="coStatement" placeholder="Enter CO Statement"></textarea>
+                                                </div>
+                                                <div class="form-group" name="co2" id="co2" style="display: none;">
+                                                    <label class="form-label">CO Statement</label>
+                                                    <textarea type="coStatement" class="form-control" id="coStatement2" name="coStatement2" aria-describedby="coStatement" placeholder="Enter CO Statement"></textarea>
+                                                </div>
+                                                <div class="form-group" name="co3" id="co3" style="display: none;">
+                                                    <label class="form-label">CO Statement</label>
+                                                    <textarea type="coStatement" class="form-control" id="coStatement3" name="coStatement3" aria-describedby="coStatement" placeholder="Enter CO Statement"></textarea>
+                                                </div>
+                                                <div class="form-group" name="co4" id="co4" style="display: none;">
+                                                    <label class="form-label">CO Statement</label>
+                                                    <textarea type="coStatement" class="form-control" id="coStatement4" name="coStatement4" aria-describedby="coStatement" placeholder="Enter CO Statement"></textarea>
+                                                </div>
+                                                <div class="form-group" name="co5" id="co5" style="display: none;">
+                                                    <label class="form-label">CO Statement</label>
+                                                    <textarea type="coStatement" class="form-control" id="coStatement5" name="coStatement5" aria-describedby="coStatement" placeholder="Enter CO Statement"></textarea>
+                                                </div>
+                                                <div class="form-group" name="co6" id="co6" style="display: none;">
+                                                    <label class="form-label">CO Statement</label>
+                                                    <textarea type="coStatement" class="form-control" id="coStatement6" name="coStatement6" aria-describedby="coStatement" placeholder="Enter CO Statement"></textarea>
+                                                </div>
+
+
+                                                <!-- <div class="form-group">
 													<label class="form-label">Exam Date</label>
 													<div class="col-sm" style="padding: 0px;">
 														<div class="row gutters-xs">
@@ -310,7 +297,7 @@
 														placeholder="Maximum Weighted Marks">
 												</div>
  -->
-<!-- 												<div class="form-group col-sm" style="padding: 0px;">
+                                                <!-- 												<div class="form-group col-sm" style="padding: 0px;">
 													<div class="form-label">Upload Proof Document</div>
 													<div class="custom-file">
 														<input type="file" class="custom-file-input"
@@ -320,7 +307,7 @@
 													</div>
 												</div>
  -->
-<!-- 												<div class="form-group">
+                                                <!-- 												<div class="form-group">
 													<label class="form-label">Leave Application to:</label>
 													<select class="form-control custom-select" id="applyTo"
 														name="applyTo">
@@ -351,13 +338,11 @@
 													</select>
 												</div>
  -->
-												<div class="form-footer">
-													<button type="submit" class="btn btn-primary btn-block"
-														id="submitLink" value="submit"
-														name="facultyApplyLeave">Submit</button>
-												</div>
-											</div>
-<!-- 											<%
+                                                <div class="form-footer">
+                                                    <button type="submit" class="btn btn-primary btn-block" id="submitLink" value="submit" name="facultyApplyLeave">Submit</button>
+                                                </div>
+                                            </div>
+                                            <!-- 											<%
 												try {
 												Uname = (String)session.getAttribute("facultyUsername");
 												
@@ -380,73 +365,68 @@
 												//out.println(e);
 												}
 												%>
- -->										</form>
-									</div>
-								</div>
-				<!-- 			</div>
+ -->
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- 			</div>
 							</div>
 						</div>
 					</div>
 
 				</div> -->
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$('input[type="radio"]').click(function () {
-				if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '1') {
-					$('#co1').show();
-					$('#co2').hide();
-					$('#co3').hide();
-					$('#co4').hide();
-					$('#co5').hide();
-					$('#co6').hide();
-				}
-				else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '2') {
-					$('#co1').show();
-					$('#co2').show();
-					$('#co3').hide();
-					$('#co4').hide();
-					$('#co5').hide();
-					$('#co6').hide();
-				}
-				else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '3') {
-					$('#co1').show();
-					$('#co2').show();
-					$('#co3').show();
-					$('#co4').hide();
-					$('#co5').hide();
-					$('#co6').hide();
-				}
-				else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '4') {
-					$('#co1').show();
-					$('#co2').show();
-					$('#co3').show();
-					$('#co4').show();
-					$('#co5').hide();
-					$('#co6').hide();
-				}
-				else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '5') {
-					$('#co1').show();
-					$('#co2').show();
-					$('#co3').show();
-					$('#co4').show();
-					$('#co5').show();
-					$('#co6').hide();
-				}
-				else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '6') {
-					$('#co1').show();
-					$('#co2').show();
-					$('#co3').show();
-					$('#co4').show();
-					$('#co5').show();
-					$('#co6').show();
-				}
-				else { }
-			});
-		});
-	</script>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('input[type="radio"]').click(function() {
+                                if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '1') {
+                                    $('#co1').show();
+                                    $('#co2').hide();
+                                    $('#co3').hide();
+                                    $('#co4').hide();
+                                    $('#co5').hide();
+                                    $('#co6').hide();
+                                } else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '2') {
+                                    $('#co1').show();
+                                    $('#co2').show();
+                                    $('#co3').hide();
+                                    $('#co4').hide();
+                                    $('#co5').hide();
+                                    $('#co6').hide();
+                                } else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '3') {
+                                    $('#co1').show();
+                                    $('#co2').show();
+                                    $('#co3').show();
+                                    $('#co4').hide();
+                                    $('#co5').hide();
+                                    $('#co6').hide();
+                                } else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '4') {
+                                    $('#co1').show();
+                                    $('#co2').show();
+                                    $('#co3').show();
+                                    $('#co4').show();
+                                    $('#co5').hide();
+                                    $('#co6').hide();
+                                } else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '5') {
+                                    $('#co1').show();
+                                    $('#co2').show();
+                                    $('#co3').show();
+                                    $('#co4').show();
+                                    $('#co5').show();
+                                    $('#co6').hide();
+                                } else if ($(this).attr('id') == 'noCo' && $(this).attr('value') == '6') {
+                                    $('#co1').show();
+                                    $('#co2').show();
+                                    $('#co3').show();
+                                    $('#co4').show();
+                                    $('#co5').show();
+                                    $('#co6').show();
+                                } else {}
+                            });
+                        });
+                    </script>
 
 </body>
 
