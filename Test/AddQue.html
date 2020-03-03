@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>ADD QUESTION</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <form method="POST">
+            ExamID:        <input type="text"/><br/>
+            No of QUESTION:  <input type="number" name="qno" id="quNo"/><br/>
+            <input onclick="addRow(this.form);" type="button" name="addbut" value="Add"><br/>
+            :::Question Weighted Marks Calculated From Multiply QuesMarks with exam_master MaxWeiMarks/MaxMarks:::<br/><br/>
+            <div id="ques">
+            </div>
+            <button>Submit</button>
+        </form>
+    </body>
+    
+    <script type="text/javascript">
+        function addRow(frm) {
+            var qno = frm.qno.value;
+            var n = 1;
+            var text = 'QuesID:<input type="text" id="q'+(n)+'"><br/>QuesMarks:<input type="text" id="qMarks'+(n)+'"><br/>QuesWeiMarks:<input type="text" id="qWeiMarks'+(n)+'"><br/>QuesCoID:<input type="text" id="qCoID'+(n)+'"><br/><br/>';
+            while(n<=qno){
+                jQuery('#ques').append(text);
+                n++;
+            }
+            frm.addbut.disabled="true";
+        }
+    </script>
+</html>
