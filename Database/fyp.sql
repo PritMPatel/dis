@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `attainment_co`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `attainment_co` (
-  `attainCoID` int(11) NOT NULL,
+  `attainCoID` int(11) NOT NULL AUTO_INCREMENT,
   `weighMarks` float NOT NULL,
   `attainmentCo` float NOT NULL,
   `enrollmentno` decimal(12,0) NOT NULL,
@@ -58,7 +58,7 @@ DROP TABLE IF EXISTS `attainment_overall`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `attainment_overall` (
-  `attainOverallID` int(11) NOT NULL,
+  `attainOverallID` int(11) NOT NULL AUTO_INCREMENT,
   `attainmentOverall` float NOT NULL,
   `enrollmentno` decimal(12,0) NOT NULL,
   `subjectID` int(11) NOT NULL,
@@ -87,7 +87,7 @@ DROP TABLE IF EXISTS `co_master`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `co_master` (
-  `coID` int(11) NOT NULL,
+  `coID` int(11) NOT NULL AUTO_INCREMENT,
   `coSrNo` int(2) NOT NULL DEFAULT '0',
   `coStatement` varchar(512) NOT NULL,
   `subjectID` int(11) NOT NULL,
@@ -118,7 +118,7 @@ DROP TABLE IF EXISTS `exam_master`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `exam_master` (
-  `examID` int(11) NOT NULL,
+  `examID` int(11) NOT NULL AUTO_INCREMENT,
   `examName` varchar(128) NOT NULL DEFAULT 'Exam',
   `examDate` date NOT NULL,
   `batch` int(11) NOT NULL,
@@ -156,7 +156,7 @@ DROP TABLE IF EXISTS `examtype_master`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `examtype_master` (
-  `examTypeID` int(11) NOT NULL,
+  `examTypeID` int(11) NOT NULL AUTO_INCREMENT,
   `typeDescription` varchar(128) NOT NULL,
   `weightage` float NOT NULL,
   `subjectID` int(11) NOT NULL,
@@ -212,7 +212,7 @@ DROP TABLE IF EXISTS `marks_obtained_master`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `marks_obtained_master` (
-  `marksID` int(11) NOT NULL,
+  `marksID` int(11) NOT NULL AUTO_INCREMENT,
   `obtainedMarks` int(11) NOT NULL,
   `nObtainedMarks` float NOT NULL DEFAULT '0',
   `obtainedWeighMarks` float NOT NULL,
@@ -244,7 +244,7 @@ DROP TABLE IF EXISTS `question_master`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `question_master` (
-  `questionID` int(11) NOT NULL,
+  `questionID` int(11) NOT NULL AUTO_INCREMENT,
   `queDesc` varchar(128) NOT NULL,
   `queMaxMarks` float NOT NULL,
   `nQueMaxMarks` float NOT NULL,
@@ -305,7 +305,7 @@ DROP TABLE IF EXISTS `subject_master`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `subject_master` (
-  `subjectID` int(11) NOT NULL,
+  `subjectID` int(11) NOT NULL AUTO_INCREMENT,
   `subjectName` varchar(50) NOT NULL,
   `subjectCode` decimal(7,0) NOT NULL,
   `semester` int(11) NOT NULL,
