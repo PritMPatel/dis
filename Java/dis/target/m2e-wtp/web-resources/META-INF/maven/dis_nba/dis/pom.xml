@@ -11,7 +11,7 @@
        <repository>
          <id>internal.repo</id>
          <name>Internal repo</name>
-        <url>file:///C:/Users/Sakshi/Documents/S/GITHUB/dis/Java/dis</url>
+         <url>file:///C:/Users/Sakshi/eclipse-workspace/dis/</url>
        </repository>
    </distributionManagement>
   <dependencies>
