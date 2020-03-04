@@ -85,7 +85,7 @@
             var qno = frm.qno.value;
             var n = 1;
             while(n<=qno){
-                jQuery('#ques').append('Ques'+n+' Desc:<input type="text" id="q'+(n)+'"><br/>Ques'+n+' Marks:<input type="text" id="qMarks'+(n)+'"><br/>Ques'+n+' Co:<select name="qCoId'+(n)+'">'+st+'</select><br/><br/>');
+                jQuery('#ques').append('Ques'+n+' Desc:<input type="text" id="q'+(n)+'"><br/>Ques'+n+' Marks:<input type="number" id="qMarks'+(n)+'"><br/>Ques'+n+' Co:<select name="qCoId'+(n)+'">'+st+'</select><br/><br/>');
                 n++;
             }
             frm.addbut.disabled="true";
