@@ -56,7 +56,7 @@
                 wFact = rs3.getFloat("weighMaxMarks")/rs3.getFloat("nMaxMarks");
                 int x=1;
                 while(x<=qunos){
-                    if(){
+                    if(con.Ins_Upd_Del("insert into question_master(queDesc,queMaxMarks,nQueMaxMarks,qMaxWeighMarks,examID,coID) values('"+request.getParameter("q"+x)+"',"+request.getParameter("qMarks"+x)+","+(request.getParameter("qMarks"+x)*nFact)+","+(request.getParameter("qMarks"+x)*nFact*wFact)+","+request.getParameter("exam_id")+","+request.getParameter("qCoId"+x)+");")){
                         out.println("<script>alert('Question "+x+" inserted......');</script>");
                     }
                     else{
@@ -85,7 +85,7 @@
             var qno = frm.qno.value;
             var n = 1;
             while(n<=qno){
-                jQuery('#ques').append('Ques'+n+' Desc:<input type="text" id="q'+(n)+'"><br/>Ques'+n+' Marks:<input type="number" id="qMarks'+(n)+'"><br/>Ques'+n+' Co:<select name="qCoId'+(n)+'">'+st+'</select><br/><br/>');
+                jQuery('#ques').append('Ques'+n+' Desc:<input type="text" name="q'+(n)+'"><br/>Ques'+n+' Marks:<input type="number" name="qMarks'+(n)+'"><br/>Ques'+n+' Co:<select name="qCoId'+(n)+'">'+st+'</select><br/><br/>');
                 n++;
             }
             frm.addbut.disabled="true";
