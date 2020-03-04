@@ -46,6 +46,22 @@
             <div id="ques">
             </div>
             <button type="submit" name="submit" value="submit">Submit</button>
+            <%
+            if(request.getParameter("submit")!=null){
+                int qunos = Integer.parseInt(request.getParameter("qno"));
+                int x=1;
+                while(x<=qunos){
+                    if(){
+                        out.println("<script>alert('Question "+x+" inserted......');</script>");
+                    }
+                    else{
+                        out.println("<script>alert('Question "+x+" was not inserted......');</script>");
+                    }
+                }
+            }
+            %>
+
+
         </form>
     </body>
     
@@ -55,7 +71,7 @@
             if(request.getParameter("examselect")!=null){
                     rs2=con.SelectData("select * from co_master where subjectID="+request.getParameter("subjectid")+";");
                     while(rs2.next()){
-                        s = s +"<option value='"+rs2.getInt("coID")+"'>CO "+rs2.getInt("coSrNo")+" - "+rs2.getString("coStatement")+"</option>";
+                        s = s +"<option value=\""+rs2.getInt("coID")+"\">CO "+rs2.getInt("coSrNo")+" - "+rs2.getString("coStatement")+"</option>";
                     }
                     out.print(s);
                 }
@@ -64,7 +80,7 @@
             var qno = frm.qno.value;
             var n = 1;
             while(n<=qno){
-                jQuery('#ques').append('QuesDesc:<input type="text" id="q'+(n)+'"><br/>QuesMarks:<input type="text" id="qMarks'+(n)+'"><br/>QuesCoID:<select name="qCoId'+(n)+'">'+st+'</select><br/><br/>');
+                jQuery('#ques').append('Ques'+n+' Desc:<input type="text" id="q'+(n)+'"><br/>Ques'+n+' Marks:<input type="text" id="qMarks'+(n)+'"><br/>Ques'+n+' Co:<select name="qCoId'+(n)+'">'+st+'</select><br/><br/>');
                 n++;
             }
             frm.addbut.disabled="true";
