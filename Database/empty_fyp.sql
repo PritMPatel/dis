@@ -97,7 +97,7 @@ CREATE TABLE `co_master` (
   KEY `co_master_ibfk_2_idx` (`facultyID`),
   CONSTRAINT `co_master_ibfk_1` FOREIGN KEY (`subjectID`) REFERENCES `subject_master` (`subjectID`),
   CONSTRAINT `co_master_ibfk_2` FOREIGN KEY (`facultyID`) REFERENCES `faculty_master` (`facultyID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +106,6 @@ CREATE TABLE `co_master` (
 
 LOCK TABLES `co_master` WRITE;
 /*!40000 ALTER TABLE `co_master` DISABLE KEYS */;
-INSERT INTO `co_master` VALUES (1,1,'Follow CO1',1,1),(2,2,'Follow CO2',1,1),(3,3,'Follow CO3',1,1),(4,4,'Follow CO4',1,1);
 /*!40000 ALTER TABLE `co_master` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +119,7 @@ DROP TABLE IF EXISTS `exam_master`;
 CREATE TABLE `exam_master` (
   `examID` int(11) NOT NULL AUTO_INCREMENT,
   `examName` varchar(128) NOT NULL DEFAULT 'Exam',
-  `examDate` date NOT NULL,
+  `examDate` date DEFAULT NULL,
   `batch` int(11) NOT NULL,
   `maxMarks` float NOT NULL,
   `nMaxMarks` float NOT NULL,
@@ -135,7 +134,7 @@ CREATE TABLE `exam_master` (
   CONSTRAINT `exam_master_ibfk_1` FOREIGN KEY (`subjectID`) REFERENCES `subject_master` (`subjectID`),
   CONSTRAINT `exam_master_ibfk_2` FOREIGN KEY (`examTypeID`) REFERENCES `examtype_master` (`examTypeID`),
   CONSTRAINT `exam_master_ibfk_3` FOREIGN KEY (`facultyID`) REFERENCES `faculty_master` (`facultyID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,6 +158,7 @@ CREATE TABLE `examtype_master` (
   `typeDescription` varchar(128) NOT NULL,
   `weightage` float NOT NULL,
   `subjectID` int(11) NOT NULL,
+  `componentTotal` int(3) NOT NULL,
   PRIMARY KEY (`examTypeID`),
   KEY `subjectID` (`subjectID`),
   CONSTRAINT `examtype_master_ibfk_1` FOREIGN KEY (`subjectID`) REFERENCES `subject_master` (`subjectID`)
@@ -171,7 +171,7 @@ CREATE TABLE `examtype_master` (
 
 LOCK TABLES `examtype_master` WRITE;
 /*!40000 ALTER TABLE `examtype_master` DISABLE KEYS */;
-INSERT INTO `examtype_master` VALUES (1,'ESE',0.45,1),(2,'PA(M)',0.2,1),(3,'PA(I)',0.15,1),(4,'ESE(V)-PR',0.2,1);
+INSERT INTO `examtype_master` VALUES (1,'ESE',0.45,1,70),(2,'PA(M)',0.2,1,30),(3,'PA(I)',0.15,1,20),(4,'ESE(V)-PR',0.2,1,30);
 /*!40000 ALTER TABLE `examtype_master` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,7 +254,7 @@ CREATE TABLE `question_master` (
   KEY `coID` (`coID`),
   CONSTRAINT `question_master_ibfk_1` FOREIGN KEY (`examID`) REFERENCES `exam_master` (`examID`),
   CONSTRAINT `question_master_ibfk_2` FOREIGN KEY (`coID`) REFERENCES `co_master` (`coID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11197 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -330,4 +330,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-03 15:03:06
+-- Dump completed on 2020-03-04 22:26:23
