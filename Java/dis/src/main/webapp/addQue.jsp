@@ -49,19 +49,27 @@
             <%
             if(request.getParameter("submit")!=null){
                 int qunos = Integer.parseInt(request.getParameter("qno"));
-                ResultSet rs3 = con.SelectData("select * from exam_master where examID="+request.getParameter("exam_id")+";")
+                ResultSet rs3 = con.SelectData("select * from exam_master where examID="+request.getParameter("exam_id")+";");
                 float nFact = 0;
                 float wFact = 0;
+                float qMaxWeighMarks = 0;
+                float n_QueMaxMarks = 0;
+                if(rs3.next()){
                 nFact = rs3.getFloat("nMaxMarks")/rs3.getFloat("maxMarks");
-                wFact = rs3.getFloat("weighMaxMarks")/rs3.getFloat("nMaxMarks");
+                wFact = rs3.getFloat("maxWeighMarks")/rs3.getFloat("nMaxMarks");
+                }
                 int x=1;
                 while(x<=qunos){
-                    if(con.Ins_Upd_Del("insert into question_master(queDesc,queMaxMarks,nQueMaxMarks,qMaxWeighMarks,examID,coID) values('"+request.getParameter("q"+x)+"',"+request.getParameter("qMarks"+x)+","+(request.getParameter("qMarks"+x)*nFact)+","+(request.getParameter("qMarks"+x)*nFact*wFact)+","+request.getParameter("exam_id")+","+request.getParameter("qCoId"+x)+");")){
+                    qMaxWeighMarks = Float.parseFloat(request.getParameter("qMarks"+x))*nFact*wFact;
+                   // float cal_q_max_weigh_marks = qMaxWeighMarks*nFact*wFact;
+                    n_QueMaxMarks = Float.parseFloat(request.getParameter("qMarks"+x))*nFact;
+                    if(con.Ins_Upd_Del("insert into question_master(queDesc,queMaxMarks,nQueMaxMarks,queMaxWeighMarks,examID,coID) values('"+request.getParameter("q"+x)+"',"+request.getParameter("qMarks"+x)+","+n_QueMaxMarks+","+qMaxWeighMarks+","+request.getParameter("exam_id")+","+request.getParameter("qCoId"+x)+");")){
                         out.println("<script>alert('Question "+x+" inserted......');</script>");
                     }
                     else{
                         out.println("<script>alert('Question "+x+" was not inserted......');</script>");
                     }
+                    x++;
                 }
             }
             %>
