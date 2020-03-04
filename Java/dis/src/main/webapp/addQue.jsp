@@ -24,6 +24,7 @@
             <%
                 Connect con=null;
                 ResultSet rs=null;
+                ResultSet rs2=null;
                 ResultSetMetaData mtdt=null;
                 con=new Connect();
                 if(request.getParameter("examselect")!=null){
@@ -51,7 +52,7 @@
             var qno = frm.qno.value;
             var n = 1;
             while(n<=qno){
-                jQuery('#ques').append('QuesDesc:<input type="text" id="q'+(n)+'"><br/>QuesMarks:<input type="text" id="qMarks'+(n)+'"><br/>QuesCoID:<input type="text" id="qCoID'+(n)+'"><br/><br/>');
+                jQuery('#ques').append('QuesDesc:<input type="text" id="q'+(n)+'"><br/>QuesMarks:<input type="text" id="qMarks'+(n)+'"><br/>QuesCoID:<select name="qCo_id"><%if(request.getParameter("addbut")!=null){rs2=con.SelectData("select * from co_master where subjectID="+request.getParameter("subjectid")+";");while(rs2.next()){out.print("<option value='"+rs.getInt("coID")+"'>CO "+rs.getInt("coSrNo")+" - "+rs.getString("coStatement")+"</option>");}}%></select><br/><br/>');
                 n++;
             }
             frm.addbut.disabled="true";
