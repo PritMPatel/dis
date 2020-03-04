@@ -31,15 +31,17 @@
             ResultSetMetaData mtdt=null;
             con=new Connect();
             float exam_weightage=0;
+            int n_marks1 = 0;
+            float MaxWeightMarks = 0;
             if (request.getParameter("submit") != null){
             int i = Integer.parseInt(request.getParameter("exam_type"));
             rs=con.SelectData("select * from examtype_master where examTypeID="+i+";");
             if(rs.next()){
             exam_weightage=rs.getFloat("weightage");
             out.println(exam_weightage);
+            n_marks1 = Integer.parseInt(request.getParameter("n_marks"));
+            MaxWeightMarks = (150 * exam_weightage * n_marks1)/rs.getInt("componentTotal");
             }
-            int n_marks1 = Integer.parseInt(request.getParameter("n_marks"));
-            float MaxWeightMarks=exam_weightage*n_marks1;
             out.println(MaxWeightMarks);
             if (con.Ins_Upd_Del("insert into exam_master(examName,batch,maxMarks,nMaxMarks,maxWeighMarks,subjectID,examTypeID,facultyID) VALUES('"+request.getParameter("exam_name")+"',"+request.getParameter("batch")+","+request.getParameter("max_marks")+","+request.getParameter("n_marks")+","+MaxWeightMarks+","+request.getParameter("subject_id")+","+i+","+request.getParameter("faculty_id")+");"))
                 out.println("<script>alert('Record inserted......');</script>");
