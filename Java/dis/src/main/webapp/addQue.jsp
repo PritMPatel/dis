@@ -32,7 +32,7 @@
                         rs=con.SelectData("select * from exam_master where subjectID="+request.getParameter("subjectid")+" and batch="+request.getParameter("batch1")+";");
                         out.println("SubjectID:<input type='number' name='subject_id' value='"+request.getParameter("subjectid")+"'/><br/> ");
                         out.println("Batch:<input type='number' name='batch' value='"+request.getParameter("batch1")+"'/><br/> ");
-                        out.println("ExamID:<select id='exam_id'><br/>");
+                        out.println("ExamID:<select name='exam_id'><br/>");
                         while(rs.next()){
                             out.println("<option value='"+rs.getInt("examID")+"'>"+rs.getInt("examID")+" - "+rs.getString("examName")+"</option>");
                         }
@@ -49,6 +49,11 @@
             <%
             if(request.getParameter("submit")!=null){
                 int qunos = Integer.parseInt(request.getParameter("qno"));
+                ResultSet rs3 = con.SelectData("select * from exam_master where examID="+request.getParameter("exam_id")+";")
+                float nFact = 0;
+                float wFact = 0;
+                nFact = rs3.getFloat("nMaxMarks")/rs3.getFloat("maxMarks");
+                wFact = rs3.getFloat("weighMaxMarks")/rs3.getFloat("nMaxMarks");
                 int x=1;
                 while(x<=qunos){
                     if(){
