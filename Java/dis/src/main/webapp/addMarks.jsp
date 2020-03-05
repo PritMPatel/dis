@@ -77,29 +77,29 @@
                 
                 <%
                 if(request.getParameter("submit")!=null){
-                    out.println(request.getParameter("examid2"));
-                    rs2=con.SelectData("SELECT questionID,queDesc,queMaxMarks,nQueMaxMarks,queMaxWeighMarks,coSrNo FROM question_master qm ,co_master cm where qm.coID=cm.coID and examID="+request.getParameter("examid2")+" order by questionID;");
-                    rs3=con.SelectData("select enrollmentno from student_master where batch in (select batch from exam_master where examID="+request.getParameter("examid2")+");");
-                    rs3.last();
-                    nOfStudents = rs3.getRow();
-                    out.println(nOfStudents);
+                    rs2=con.SelectData("SELECT questionID,queDesc,queMaxMarks,nQueMaxMarks,queMaxWeighMarks,coSrNo FROM question_master qm, co_master cm where qm.coID=cm.coID and examID="+request.getParameter("examid2")+" order by questionID;");
                     rs2.last();
                     nOfQue = rs2.getRow();
-                    out.println(nOfQue);
+                    //out.println(nOfQue);
+                    rs3=con.SelectData("select enrollmentno from student_master where batch in (select batch from exam_master where examID="+request.getParameter("examid2")+") order by enrollmentno;");
+                    rs3.last();
+                    nOfStudents = rs3.getRow();
+                    //out.println(nOfStudents);
                     x=1;
                     x2=1;
-                    while(x2<=nOfStudents){
-                        out.println("It reach inside first loop");
+                    rs3.beforeFirst();
+                    while(x2<=nOfStudents && rs3.next()){
+                        //out.println("It reach inside first loop");
                         rs2.beforeFirst();
                         x=1;
                         while(x<=nOfQue && rs2.next()){
-                            out.println("It reach inside Second loop");
+                            //out.println("It reach inside Second loop");
                             float nFact = rs2.getFloat("nQueMaxMarks")/rs2.getFloat("queMaxMarks");
                             float wFact = rs2.getFloat("queMaxWeighMarks")/rs2.getFloat("queMaxMarks");
                             float obtWeighMarks = Float.parseFloat(request.getParameter(x2+"que"+x))*wFact;
                             float obtNormMarks = Float.parseFloat(request.getParameter(x2+"que"+x))*nFact;
-                            out.println("<br><br>n w oN oW"+"-"+nFact+"-"+wFact+"-"+obtNormMarks+"-"+obtWeighMarks+"<br><br>");
-                            if(con.Ins_Upd_Del("insert into marks_obtained_master(enrollmentno,questionID,obtainedMarks,nObtainedMarks,obtainedWeighMarks) values("+request.getParameter("enroll"+x2)+","+rs2.getInt("questionID")+","+request.getParameter(x2+"que"+x)+","+obtNormMarks+","+obtWeighMarks+");")){}
+                            //out.println("<br><br>n w oN oW"+"-"+nFact+"-"+wFact+"-"+obtNormMarks+"-"+obtWeighMarks+"<br><br>");
+                            if(con.Ins_Upd_Del("insert into marks_obtained_master(enrollmentno,questionID,obtainedMarks,nObtainedMarks,obtainedWeighMarks) values("+rs3.getInt("enrollmentno")+","+rs2.getInt("questionID")+","+request.getParameter(x2+"que"+x)+","+obtNormMarks+","+obtWeighMarks+");")){}
                             else{
                                 out.println("<script>alert('ERROR : @"+request.getParameter("enroll"+x2)+" FOR QUESTION "+x+"');</script>");
                             }
