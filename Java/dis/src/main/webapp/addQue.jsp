@@ -56,12 +56,12 @@
                 float n_QueMaxMarks = 0;
                 if(rs3.next()){
                 nFact = rs3.getFloat("nMaxMarks")/rs3.getFloat("maxMarks");
-                wFact = rs3.getFloat("maxWeighMarks")/rs3.getFloat("nMaxMarks");
+                wFact = rs3.getFloat("maxWeighMarks")/rs3.getFloat("maxMarks");
                 }
                 int x=1;
                 while(x<=qunos){
-                    qMaxWeighMarks = Float.parseFloat(request.getParameter("qMarks"+x))*nFact*wFact;
-                   // float cal_q_max_weigh_marks = qMaxWeighMarks*nFact*wFact;
+                    qMaxWeighMarks = Float.parseFloat(request.getParameter("qMarks"+x))*wFact;
+                   // float cal_q_max_weigh_marks = qMaxWeighMarks*wFact;
                     n_QueMaxMarks = Float.parseFloat(request.getParameter("qMarks"+x))*nFact;
                     if(con.Ins_Upd_Del("insert into question_master(queDesc,queMaxMarks,nQueMaxMarks,queMaxWeighMarks,examID,coID) values('"+request.getParameter("q"+x)+"',"+request.getParameter("qMarks"+x)+","+n_QueMaxMarks+","+qMaxWeighMarks+","+request.getParameter("exam_id")+","+request.getParameter("qCoId"+x)+");")){
                         out.println("<script>alert('Question "+x+" inserted......');</script>");
