@@ -14,10 +14,10 @@
         <a href="calculateAttainment.jsp">Calculate Attainment</a><br/>
         <br/><br/>
     <form method="POST">
-        ExamID:        <input type="number" name="exam_id"/><br/>
+        <%-- ExamID:        <input type="number" name="exam_id"/><br/> --%>
         ExamName:     <input type="text" name="exam_name"/><br/>
-        Type of EXAM:  <input type="number" name="exam_type"/><br/>
-        EXAM Date:     <input type="date" name="exam_date"/><br/>
+        ExamType ID:  <input type="number" name="exam_type"/><br/>
+        <%-- EXAM Date:     <input type="date" name="exam_date"/><br/> --%>
         SubjectID:     <input type="number" name="subject_id"/><br/>
         MaxMarks:      <input type="number" name="max_marks"/><br/>
         NormalizedMarks: <input type="number" name="n_marks"/><br/>
