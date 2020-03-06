@@ -63,7 +63,7 @@
 					nOfStudents=rs3.getRow();
 					rs3.beforeFirst();
 					while(x2<=nOfStudents && rs3.next()){
-						out.println("<tr><td><input type='number' name='enroll"+x2+"' value='"+rs3.getInt("enrollmentno")+"' disabled></td>");
+						out.println("<tr><td><input type='text' name='enroll"+x2+"' value='"+rs3.getString("enrollmentno")+"' disabled></td>");
 						while(x<=nOfQue){
 							out.println("<td><input type='number' name='"+x2+"que"+x+"'></td>");
 							x++;
@@ -99,7 +99,7 @@
                             float obtWeighMarks = Float.parseFloat(request.getParameter(x2+"que"+x))*wFact;
                             float obtNormMarks = Float.parseFloat(request.getParameter(x2+"que"+x))*nFact;
                             //out.println("<br><br>n w oN oW"+"-"+nFact+"-"+wFact+"-"+obtNormMarks+"-"+obtWeighMarks+"<br><br>");
-                            if(con.Ins_Upd_Del("insert into marks_obtained_master(enrollmentno,questionID,obtainedMarks,nObtainedMarks,obtainedWeighMarks) values("+rs3.getInt("enrollmentno")+","+rs2.getInt("questionID")+","+request.getParameter(x2+"que"+x)+","+obtNormMarks+","+obtWeighMarks+");")){}
+                            if(con.Ins_Upd_Del("insert into marks_obtained_master(enrollmentno,questionID,obtainedMarks,nObtainedMarks,obtainedWeighMarks) values("+rs3.getString("enrollmentno")+","+rs2.getInt("questionID")+","+request.getParameter(x2+"que"+x)+","+obtNormMarks+","+obtWeighMarks+");")){}
                             else{
                                 out.println("<script>alert('ERROR : @"+request.getParameter("enroll"+x2)+" FOR QUESTION "+x+"');</script>");
                             }
