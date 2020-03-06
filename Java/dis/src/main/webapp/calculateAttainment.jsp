@@ -56,8 +56,8 @@
 				rs4=con.SelectData("select enrollmentno from student_master where batch="+request.getParameter("batch1")+";");
 				while(rs4.next()){
 					out.println("<tr>");
-					out.println("<td>"+rs4.getInt("enrollmentno")+"</td>");
-					rs5=con.SelectData("select enrollmentno,coSrNo,typeDescription,examName,queDesc,question_master.questionID,obtainedMarks,obtainedWeighMarks from question_master,exam_master,examtype_master,co_master,marks_obtained_master where marks_obtained_master.questionID=question_master.questionID and question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID="+request.getParameter("subject1")+" and exam_master.batch="+request.getParameter("batch1")+" and enrollmentno="+rs4.getInt("enrollmentno")+" order by enrollmentno,coSrNo,typeDescription,examName,queDesc;");
+					out.println("<td>"+rs4.getString("enrollmentno")+"</td>");
+					rs5=con.SelectData("select enrollmentno,coSrNo,typeDescription,examName,queDesc,question_master.questionID,obtainedMarks,obtainedWeighMarks from question_master,exam_master,examtype_master,co_master,marks_obtained_master where marks_obtained_master.questionID=question_master.questionID and question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID="+request.getParameter("subject1")+" and exam_master.batch="+request.getParameter("batch1")+" and enrollmentno="+rs4.getString("enrollmentno")+" order by enrollmentno,coSrNo,typeDescription,examName,queDesc;");
 					while(rs5.next()){
 						out.println("<td>"+rs5.getFloat("obtainedMarks")+"</td><td>"+rs5.getFloat("obtainedWeighMarks")+"</td>");
 					}
