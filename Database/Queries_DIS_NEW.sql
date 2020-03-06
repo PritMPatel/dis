@@ -22,6 +22,13 @@ select examID,typeDescription,examName from examtype_master etm,exam_master em w
 
 select typeDescription,count(em.examID) as colspan from examtype_master etm,exam_master em,question_master qm where qm.examID=em.examID and etm.examtypeID=em.examtypeID and em.subjectID=1 and batch=2017 group by typeDescription;
 select examName,count(em.examID) as colspan, examtypeID from exam_master em,question_master qm where em.subjectID=1 and batch=2017 group by em.examID order by examtypeID;
+select examName,queDesc, examtypeID from exam_master em,question_master qm where em.subjectID=1 and batch=2017 order by examtypeID;
+
+select coSrNo,examtype_master.typeDescription,examName,queDesc from question_master,exam_master,examtype_master,co_master where question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND co_master.subjectID order by coSrNo,typeDescription,examName,queDesc;
+select coSrNo,count(coSrNo) as colspan from question_master,exam_master,examtype_master,co_master where question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID=1 and exam_master.batch=2017 group by coSrNo order by coSrNo,typeDescription,examName,queDesc;
+select typeDescription,count(exam_master.examTypeID) as colspan from question_master,exam_master,examtype_master,co_master where question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID=1 and exam_master.batch=2017 group by coSrNo order by coSrNo,typeDescription,examName,queDesc;
+select examName,count(exam_master.examID) as colspan from question_master,exam_master,examtype_master,co_master where question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID=1 and exam_master.batch=2017 group by coSrNo order by coSrNo,typeDescription,examName,queDesc;
+select enrollmentno,coSrNo,typeDescription,examName,queDesc,question_master.questionID,obtainedMarks,obtainedWeighMarks from question_master,exam_master,examtype_master,co_master,marks_obtained_master where marks_obtained_master.questionID=question_master.questionID and question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID=1 and exam_master.batch=2017 and enrollmentno=1 order by enrollmentno,coSrNo,typeDescription,examName,queDesc;
 
 /*Calculates Total Weighted Marks CO Wise and Attainment of that in Percentage for each student*/
 SELECT 
