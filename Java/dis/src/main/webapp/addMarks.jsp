@@ -33,7 +33,7 @@
                 int eid=0;
                 con=new Connect();
                 if(request.getParameter("examselect")!=null){
-                    rs=con.SelectData("select * from exam_master where subjectID="+request.getParameter("subject1")+" and batch="+request.getParameter("batch1")+";");
+                    rs=con.SelectData("select * from exam_master where examID in (select distinct examID from question_master where questionID not in (select questionID from marks_obtained_master)) and subjectID="+request.getParameter("subject1")+" and batch="+request.getParameter("batch1")+";");
                     out.println("<br/><form method='POST'>SubjectID:<input type='number' name='subject1' value='"+request.getParameter("subject1")+"' disabled/><br/> ");
                     out.println("Batch:<input type='number' name='batch1' value='"+request.getParameter("batch1")+"' disabled/><br/> ");
                     out.println("ExamID:<select name='examid'>");
