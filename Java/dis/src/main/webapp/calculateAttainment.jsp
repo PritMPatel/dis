@@ -28,7 +28,10 @@
 			ResultSet rs3=null;
 			ResultSet rs4=null;
 			ResultSet rs5=null;
+			ResultSet rs6=null;
 			ResultSetMetaData mtdt=null;
+			int coCounter=0;
+			int i=1;
 			con=new Connect();
 
 			if(request.getParameter("viewattain")!=null){
@@ -36,6 +39,8 @@
 				rs0=con.SelectData("select coSrNo,count(coSrNo)*2 as colspan from question_master,exam_master,examtype_master,co_master where question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID="+request.getParameter("subject1")+" and exam_master.batch="+request.getParameter("batch1")+" and question_master.questionID in (select distinct questionID from marks_obtained_master) group by coSrNo order by coSrNo,typeDescription,examName,queDesc;");
 				while(rs0.next()){
 					out.println("<th colspan='"+rs0.getInt("colspan")+"'>CO-"+rs0.getInt("coSrNo")+"</th>");
+					out.println("<th rowspan='4'>Total</th>");
+					coCounter++;
 				}
 				out.println("</tr><tr>");
 				rs=con.SelectData("select typeDescription,count(exam_master.examtypeID)*2 as colspan from question_master,exam_master,examtype_master,co_master where question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID="+request.getParameter("subject1")+" and exam_master.batch="+request.getParameter("batch1")+" and question_master.questionID in (select distinct questionID from marks_obtained_master) group by coSrNo order by coSrNo,typeDescription,examName,queDesc;");
@@ -55,11 +60,18 @@
 				out.println("</tr>");
 				rs4=con.SelectData("select enrollmentno from student_master where batch="+request.getParameter("batch1")+";");
 				while(rs4.next()){
+					i=1;
 					out.println("<tr>");
 					out.println("<td>"+rs4.getInt("enrollmentno")+"</td>");
-					rs5=con.SelectData("select enrollmentno,coSrNo,typeDescription,examName,queDesc,question_master.questionID,obtainedMarks,obtainedWeighMarks from question_master,exam_master,examtype_master,co_master,marks_obtained_master where marks_obtained_master.questionID=question_master.questionID and question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID="+request.getParameter("subject1")+" and exam_master.batch="+request.getParameter("batch1")+" and enrollmentno="+rs4.getInt("enrollmentno")+" and question_master.questionID in (select distinct questionID from marks_obtained_master) order by enrollmentno,coSrNo,typeDescription,examName,queDesc;");
-					while(rs5.next()){
-						out.println("<td>"+rs5.getFloat("obtainedMarks")+"</td><td>"+rs5.getFloat("obtainedWeighMarks")+"</td>");
+					while(i<=coCounter){
+						rs5=con.SelectData("select enrollmentno,question_master.questionID,obtainedMarks,obtainedWeighMarks from question_master,exam_master,examtype_master,co_master,marks_obtained_master where marks_obtained_master.questionID=question_master.questionID and question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID="+request.getParameter("subject1")+" and exam_master.batch="+request.getParameter("batch1")+" and enrollmentno="+rs4.getInt("enrollmentno")+" and question_master.questionID in (select distinct questionID from marks_obtained_master) and coSrNo="+i+" order by enrollmentno,coSrNo,typeDescription,examName,queDesc;");
+						while(rs5.next()){
+							out.println("<td>"+rs5.getFloat("obtainedMarks")+"</td><td>"+rs5.getFloat("obtainedWeighMarks")+"</td>");
+						}
+						rs6=con.SelectData("select enrollmentno,sum(obtainedWeighMarks) from question_master,exam_master,examtype_master,co_master,marks_obtained_master where marks_obtained_master.questionID=question_master.questionID and question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID="+request.getParameter("subject1")+" and exam_master.batch="+request.getParameter("batch1")+" and enrollmentno="+rs4.getInt("enrollmentno")+" and question_master.questionID in (select distinct questionID from marks_obtained_master) and coSrNo="+i+" group by coSrNo order by enrollmentno,coSrNo,typeDescription,examName,queDesc;");
+						rs6.next();
+						out.println("<td>"+rs6.getFloat("sum(obtainedWeighMarks)")+"</td>");
+						i++;
 					}
 					out.println("</tr>");
 				}
