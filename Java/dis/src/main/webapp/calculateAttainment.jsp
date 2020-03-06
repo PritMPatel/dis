@@ -48,7 +48,7 @@
 					out.println("<th colspan='"+rs.getInt("colspan")+"'>"+rs.getString("typeDescription")+"</th>");
 				}
 				out.println("</tr><tr>");
-				rs2=con.SelectData("select examName,count(exam_master.examID)*2 as colspan from question_master,exam_master,examtype_master,co_master where question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID="+request.getParameter("subject1")+" and exam_master.batch="+request.getParameter("batch1")+" group by coSrNo order by coSrNo,typeDescription,examName,queDesc;");
+				rs2=con.SelectData("select examName,count(exam_master.examID)*2 as colspan from question_master,exam_master,examtype_master,co_master where question_master.coID=co_master.coID	AND exam_master.examID=question_master.examID AND examtype_master.examTypeID=exam_master.examTypeID AND exam_master.subjectID="+request.getParameter("subject1")+" and exam_master.batch="+request.getParameter("batch1")+" question_master.questionID in (select distinct questionID from marks_obtained_master) group by coSrNo order by coSrNo,typeDescription,examName,queDesc;");
 				while(rs2.next()){
 					out.println("<th colspan='"+rs2.getInt("colspan")+"'>"+rs2.getString("examName")+"</th>");
 				}
