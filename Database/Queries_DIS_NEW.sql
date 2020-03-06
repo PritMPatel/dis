@@ -21,7 +21,7 @@ select enrollmentno,t1.typeDescription,t1.examName,qm.queDesc,coSrNo,obtainedWei
 select examID,typeDescription,examName from examtype_master etm,exam_master em where etm.examtypeID=em.examtypeID and em.subjectID=1 and batch=2017;
 
 select typeDescription,count(em.examID) as colspan from examtype_master etm,exam_master em,question_master qm where qm.examID=em.examID and etm.examtypeID=em.examtypeID and em.subjectID=1 and batch=2017 group by typeDescription;
-select examName,count(em.examID) as colspan from exam_master em,question_master qm where em.subjectID=1 and batch=2017 group by em.examID;
+select examName,count(em.examID) as colspan, examtypeID from exam_master em,question_master qm where em.subjectID=1 and batch=2017 group by em.examID order by examtypeID;
 
 /*Calculates Total Weighted Marks CO Wise and Attainment of that in Percentage for each student*/
 SELECT 
