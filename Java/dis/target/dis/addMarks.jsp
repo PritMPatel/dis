@@ -33,7 +33,7 @@
                 int eid=0;
                 con=new Connect();
                 if(request.getParameter("examselect")!=null){
-                    rs=con.SelectData("select * from exam_master where subjectID="+request.getParameter("subject1")+" and batch="+request.getParameter("batch1")+";");
+                    rs=con.SelectData("select * from exam_master where examID in (select distinct examID from question_master where questionID not in (select questionID from marks_obtained_master)) and subjectID="+request.getParameter("subject1")+" and batch="+request.getParameter("batch1")+";");
                     out.println("<br/><form method='POST'>SubjectID:<input type='number' name='subject1' value='"+request.getParameter("subject1")+"' disabled/><br/> ");
                     out.println("Batch:<input type='number' name='batch1' value='"+request.getParameter("batch1")+"' disabled/><br/> ");
                     out.println("ExamID:<select name='examid'>");
@@ -65,7 +65,7 @@
 					while(x2<=nOfStudents && rs3.next()){
 						out.println("<tr><td><input type='text' name='enroll"+x2+"' value='"+rs3.getString("enrollmentno")+"' disabled></td>");
 						while(x<=nOfQue){
-							out.println("<td><input type='number' name='"+x2+"que"+x+"'></td>");
+							out.println("<td><input type='text' name='"+x2+"que"+x+"'></td>");
 							x++;
 						}
                         x=1;
@@ -99,7 +99,7 @@
                             float obtWeighMarks = Float.parseFloat(request.getParameter(x2+"que"+x))*wFact;
                             float obtNormMarks = Float.parseFloat(request.getParameter(x2+"que"+x))*nFact;
                             //out.println("<br><br>n w oN oW"+"-"+nFact+"-"+wFact+"-"+obtNormMarks+"-"+obtWeighMarks+"<br><br>");
-                            if(con.Ins_Upd_Del("insert into marks_obtained_master(enrollmentno,questionID,obtainedMarks,nObtainedMarks,obtainedWeighMarks) values("+rs3.getString("enrollmentno")+","+rs2.getInt("questionID")+","+request.getParameter(x2+"que"+x)+","+obtNormMarks+","+obtWeighMarks+");")){}
+                            if(con.Ins_Upd_Del("insert into marks_obtained_master(enrollmentno,questionID,obtainedMarks,nObtainedMarks,obtainedWeighMarks) values("+rs3.getString("enrollmentno")+","+rs2.getInt("questionID")+","+Float.parseFloat(request.getParameter(x2+"que"+x))+","+obtNormMarks+","+obtWeighMarks+");")){}
                             else{
                                 out.println("<script>alert('ERROR : @"+request.getParameter("enroll"+x2)+" FOR QUESTION "+x+"');</script>");
                             }
