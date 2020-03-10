@@ -84,7 +84,6 @@
     </body>
     
     <script type="text/javascript">
-        
         var st = '<%
             if(request.getParameter("examselect")!=null){
                     rs2=con.SelectData("select * from co_master where subjectID="+request.getParameter("subjectid")+";");
@@ -94,14 +93,26 @@
                     out.print(s);
                 }
         %>';
+        var n=1;
         function addRow(frm) {
             var qno = frm.qno.value;
-            var n = 1;
             while(n<=qno){
-                jQuery('#ques').append('Ques'+n+' Desc:<input type="text" name="q'+(n)+'"><br/>Ques'+n+' QuestionMaxMarks:<input type="number" name="qMarks'+(n)+'"><br/>Ques'+n+' Co:<select name="qCoId'+(n)+'">'+st+'</select><br/> MultipleMapping:<input type="number" name="multiMap"><br/><br/>');
+                jQuery('#ques').append('Ques'+n+' Desc:<input type="text" name="q'+(n)+'"><br/>Ques'+n+' QuestionMaxMarks:<input type="number" name="qMarks'+(n)+'"><br/> MultipleMapping:<input type="number" id="multiMap" name="multiMap"><div id="addCo"></div><br/><br/>');
                 n++;
             }
             frm.addbut.disabled="true";
         }
+        $(document).ready(function () {
+			$('input[type="number"]').change(function () {
+				if ($(this).attr('id') == 'multiMap') {
+					var mmap = $(this).attr('value');
+                    var x=1;
+                    while(x<=mmap){
+                    $('#addCo').append(x+' Co:<select name="'+n+'qCoId'+x+'">'+st+'</select><br/>');
+                    mmap--;
+                    }
+				}
+			});
+		});
     </script>
 </html>
