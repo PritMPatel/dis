@@ -60,7 +60,7 @@
                 fetchWeight = rs3.getFloat("weightage");
                 fetchTotalMarks = rs3.getFloat("totalMaxMarks");
                 examTypeID = rs3.getInt("examTypeID");
-                percentWeight = rs1.getFloat("percentWeight");
+                percentWeight = rs3.getFloat("percentWeight");
                 }
                 int x=1;
                 while(x<=qunos){
