@@ -19,8 +19,8 @@
         ExamType ID:  <input type="number" name="exam_type"/><br/>
         <%-- EXAM Date:     <input type="date" name="exam_date"/><br/> --%>
         SubjectID:     <input type="number" name="subject_id"/><br/>
-        MaxMarks:      <input type="number" name="max_marks"/><br/>
-        NormalizedMarks: <input type="number" name="n_marks"/><br/>
+        TotalMaxMarks:      <input type="number" name="total_max_marks"/><br/>
+        Weightage: <input type="number" name="weightage"/><br/>
        <!-- MaxWeightMarks:<input type="text" name="max_weighted_marks"/><br/>:::Calculated Based on Type Of Exam::: -->
         Batch:         <input type="number" name="batch"/><br/>
         FacultyID:     <input type="number" name="faculty_id"/><br/>
@@ -30,20 +30,13 @@
             ResultSet rs=null;
             ResultSetMetaData mtdt=null;
             con=new Connect();
-            float exam_weightage=0;
+            /*float exam_weightage=0;
             int n_marks1 = 0;
-            float MaxWeightMarks = 0;
+            float MaxWeightMarks = 0;*/
             if (request.getParameter("submit") != null){
             int i = Integer.parseInt(request.getParameter("exam_type"));
             rs=con.SelectData("select * from examtype_master where examTypeID="+i+";");
-            if(rs.next()){
-            exam_weightage=rs.getFloat("weightage");
-            out.println(exam_weightage);
-            n_marks1 = Integer.parseInt(request.getParameter("n_marks"));
-            MaxWeightMarks = (150 * exam_weightage * n_marks1)/rs.getInt("componentTotal");
-            }
-            out.println(MaxWeightMarks);
-            if (con.Ins_Upd_Del("insert into exam_master(examName,batch,maxMarks,nMaxMarks,maxWeighMarks,subjectID,examTypeID,facultyID) VALUES('"+request.getParameter("exam_name")+"',"+request.getParameter("batch")+","+request.getParameter("max_marks")+","+request.getParameter("n_marks")+","+MaxWeightMarks+","+request.getParameter("subject_id")+","+i+","+request.getParameter("faculty_id")+");"))
+            if (con.Ins_Upd_Del("insert into exam_master(examName,batch,totalMaxMarks,weightage,subjectID,examTypeID,facultyID) VALUES('"+request.getParameter("exam_name")+"',"+request.getParameter("batch")+","+request.getParameter("total_max_marks")+","+request.getParameter("weightage")+","+request.getParameter("subject_id")+","+i+","+request.getParameter("faculty_id")+");"))
                 out.println("<script>alert('Record inserted......');</script>");
                 else
                 out.println("<script>alert('Record was not inserted......');</script>");

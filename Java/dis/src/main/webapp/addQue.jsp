@@ -46,24 +46,29 @@
             <div id="ques">
             </div>
             <button type="submit" name="submit" value="submit">Submit</button>
-            <%
+            <% 
             if(request.getParameter("submit")!=null){
                 int qunos = Integer.parseInt(request.getParameter("qno"));
-                ResultSet rs3 = con.SelectData("select * from exam_master where examID="+request.getParameter("exam_id")+";");
-                float nFact = 0;
-                float wFact = 0;
-                float qMaxWeighMarks = 0;
-                float n_QueMaxMarks = 0;
+                ResultSet rs3 = con.SelectData("SELECT em.examID,em.examTypeID, em.weightage, em.totalMaxMarks, etm.percentWeight FROM exam_master em, examtype_master etm where em.examTypeID=etm.examTypeID and examID="+request.getParameter("exam_id")+";");
+                float fetchWeight = 0;
+                float fetchTotalMarks = 0;
+                int examTypeID = 0;
+                float percentWeight = 0;
+                float calcQuesMaxMarks = 0;
+                float nCalcQuesMaxMarks = 0;
                 if(rs3.next()){
-                nFact = rs3.getFloat("nMaxMarks")/rs3.getFloat("maxMarks");
-                wFact = rs3.getFloat("maxWeighMarks")/rs3.getFloat("maxMarks");
+                fetchWeight = rs3.getFloat("weightage");
+                fetchTotalMarks = rs3.getFloat("totalMaxMarks");
+                examTypeID = rs3.getInt("examTypeID");
+                percentWeight = rs1.getFloat("percentWeight");
                 }
                 int x=1;
                 while(x<=qunos){
-                    qMaxWeighMarks = Float.parseFloat(request.getParameter("qMarks"+x))*wFact;
-                   // float cal_q_max_weigh_marks = qMaxWeighMarks*wFact;
-                    n_QueMaxMarks = Float.parseFloat(request.getParameter("qMarks"+x))*nFact;
-                    if(con.Ins_Upd_Del("insert into question_master(queDesc,queMaxMarks,nQueMaxMarks,queMaxWeighMarks,examID,coID) values('"+request.getParameter("q"+x)+"',"+request.getParameter("qMarks"+x)+","+n_QueMaxMarks+","+qMaxWeighMarks+","+request.getParameter("exam_id")+","+request.getParameter("qCoId"+x)+");")){
+                    float a = Float.parseFloat(request.getParameter("qMarks"+x))*fetchWeight;
+                    float b = Float.parseFloat(request.getParameter("multiMap"))*fetchTotalMarks;
+                    calcQuesMaxMarks = a/b;
+                    nCalcQuesMaxMarks = calcQuesMaxMarks*percentWeight;
+                    if(con.Ins_Upd_Del("insert into question_master(queDesc,queMaxMarks,multipleMap,calcQuesMaxMarks,nCalcQuesMaxMarks,examID,coID) values('"+request.getParameter("q"+x)+"',"+request.getParameter("qMarks"+x)+","+request.getParameter("multiMap")+","+calcQuesMaxMarks+","+nCalcQuesMaxMarks+","+request.getParameter("exam_id")+","+request.getParameter("qCoId"+x)+");")){
                         out.println("<script>alert('Question "+x+" inserted......');</script>");
                     }
                     else{
@@ -93,7 +98,7 @@
             var qno = frm.qno.value;
             var n = 1;
             while(n<=qno){
-                jQuery('#ques').append('Ques'+n+' Desc:<input type="text" name="q'+(n)+'"><br/>Ques'+n+' Marks:<input type="number" name="qMarks'+(n)+'"><br/>Ques'+n+' Co:<select name="qCoId'+(n)+'">'+st+'</select><br/><br/>');
+                jQuery('#ques').append('Ques'+n+' Desc:<input type="text" name="q'+(n)+'"><br/>Ques'+n+' QuestionMaxMarks:<input type="number" name="qMarks'+(n)+'"><br/>Ques'+n+' Co:<select name="qCoId'+(n)+'">'+st+'</select><br/> MultipleMapping:<input type="number" name="multiMap"><br/><br/>');
                 n++;
             }
             frm.addbut.disabled="true";

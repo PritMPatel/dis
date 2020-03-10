@@ -44,7 +44,7 @@
             int conos = Integer.parseInt(request.getParameter("cono"));
             int x = 1;
             while(x<=conos){
-                if (con.Ins_Upd_Del("insert into co_master(coSrNo,coStatement,subjectID,facultyID) VALUES("+x+",'"+request.getParameter("co"+x)+"',"+request.getParameter("subject_id")+","+request.getParameter("faculty_id")+");"))
+                if (con.Ins_Upd_Del("insert into co_master(coID,coStatement,subjectID,facultyID) VALUES("+x+",'"+request.getParameter("co"+x)+"',"+request.getParameter("subject_id")+","+request.getParameter("faculty_id")+");"))
                     out.println("<script>alert('CO "+x+" inserted......');</script>");
                 else
                     out.println("<script>alert('CO was not inserted......');</script>");
