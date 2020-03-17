@@ -132,7 +132,7 @@
                                 float obtMarks = rs2.getFloat("queMaxMarks")*marks/examMaxMarks;
                                 float obtWeighMarks = obtMarks*wFact;
                                 float obtNormMarks = obtMarks*nFact;    
-                                if(con.Ins_Upd_Del("insert into marks_obtained_master(enrollmentno,questionID,obtainedMarks,nObtainedMarks,obtainedWeighMarks) values("+rs3.getString("enrollmentno")+","+rs2.getInt("questionID")+","+obtMarks+","+obtNormMarks+","+obtWeighMarks+");")){}
+                                if(con.Ins_Upd_Del("insert into marks_obtained_master(enrollmentno,questionID,obtainedMarks,calcObtainedMarks,nCalcObtainedMarks) values("+rs3.getString("enrollmentno")+","+rs2.getInt("questionID")+","+obtMarks+","+obtNormMarks+","+obtWeighMarks+");")){}
                                 else{
                                     out.println("<script>alert('ERROR : @"+request.getParameter("enroll"+x2)+" FOR QUESTION "+x+"');</script>");
                                 }

@@ -65,9 +65,9 @@
                 }
                 int x=1;
                 while(x<=qunos){
-                    String coVal = '';
-                    String coHead = '';
-                    int m = Integer.parseInt(request.getParameter("map"+x))
+                    String coVal = null;
+                    String coHead = null;
+                    int m = Integer.parseInt(request.getParameter("map"+x));
                     float a = Float.parseFloat(request.getParameter("qMarks"+x))*fetchWeight;
                     float b = Float.parseFloat(request.getParameter("map"+x))*fetchTotalMarks;
                     calcQuesMaxMarks = a/b;
