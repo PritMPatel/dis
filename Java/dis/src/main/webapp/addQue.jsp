@@ -65,11 +65,24 @@
                 }
                 int x=1;
                 while(x<=qunos){
+                    String coVal = '';
+                    String coHead = '';
+                    int m = Integer.parseInt(request.getParameter("map"+x))
                     float a = Float.parseFloat(request.getParameter("qMarks"+x))*fetchWeight;
-                    float b = Float.parseFloat(request.getParameter("multiMap"))*fetchTotalMarks;
+                    float b = Float.parseFloat(request.getParameter("map"+x))*fetchTotalMarks;
                     calcQuesMaxMarks = a/b;
                     nCalcQuesMaxMarks = calcQuesMaxMarks*percentWeight;
-                    if(con.Ins_Upd_Del("insert into question_master(queDesc,queMaxMarks,multipleMap,calcQuesMaxMarks,nCalcQuesMaxMarks,examID,coID) values('"+request.getParameter("q"+x)+"',"+request.getParameter("qMarks"+x)+","+request.getParameter("multiMap")+","+calcQuesMaxMarks+","+nCalcQuesMaxMarks+","+request.getParameter("exam_id")+","+request.getParameter("qCoId"+x)+");")){
+                    
+                    for(int i=1;i<=m;i++){
+                        coHead = coHead + 'coID'+ String.parseString(i);
+                        coVal = coVal + request.getParameter("qmap"+x+"co"+i);
+                        if(i<m){
+                            coHead += ',';
+                            coVal += ',';
+                        }
+                    }
+
+                    if(con.Ins_Upd_Del("insert into question_master(queDesc,queMaxMarks,multipleMap,calcQuesMaxMarks,nCalcQuesMaxMarks,examID,"+coHead+") values('"+request.getParameter("q"+x)+"',"+request.getParameter("qMarks"+x)+","+request.getParameter("multiMap")+","+calcQuesMaxMarks+","+nCalcQuesMaxMarks+","+request.getParameter("exam_id")+","+coVal+");")){
                         out.println("<script>alert('Question "+x+" inserted......');</script>");
                     }
                     else{
@@ -105,19 +118,17 @@
                 <div name="dQ'+n+'">\
                     Ques '+n+' Desc:<input type="text" name="q'+n+'"><br/>\
                     Ques '+n+' MaxMarks:<input type="number" name="qMarks'+(n)+'"><br/>\
-                        MultipleMapping:<input class="multiMap" type="number" id="multiMap'+n+'" name="multiMap'+n+'">\
+                        MultipleMapping:<input class="multiMap" type="number" id="map'+n+'" name="map'+n+'">\
                         \
-                        <div id="multiMap'+n+'Co">\
+                        <div id="map'+n+'Co">\
                         </div></div><br/>');
                 n++;
             }
             frm.addbut.disabled="true";
         }
         $(document).on("change",".multiMap",function(){
-                    console.log(this);
                     var i= document.getElementById(this.id+"Co");
                     var no = this.value;
-                    console.log(no);
                     var j=1;
                     $(i).text('');
                     while(j<=no){
