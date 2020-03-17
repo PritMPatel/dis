@@ -65,16 +65,16 @@
                 }
                 int x=1;
                 while(x<=qunos){
-                    String coVal = '';
-                    String coHead = '';
-                    int m = Integer.parseInt(request.getParameter("map"+x))
+                    String coVal = "";
+                    String coHead = "";
+                    int m = Integer.parseInt(request.getParameter("map"+x));
                     float a = Float.parseFloat(request.getParameter("qMarks"+x))*fetchWeight;
                     float b = Float.parseFloat(request.getParameter("map"+x))*fetchTotalMarks;
                     calcQuesMaxMarks = a/b;
                     nCalcQuesMaxMarks = calcQuesMaxMarks*percentWeight;
                     
                     for(int i=1;i<=m;i++){
-                        coHead = coHead + 'coID'+ String.parseString(i);
+                        coHead = coHead + "coID" + Integer.toString(i);
                         coVal = coVal + request.getParameter("qmap"+x+"co"+i);
                         if(i<m){
                             coHead += ',';
@@ -82,7 +82,7 @@
                         }
                     }
 
-                    if(con.Ins_Upd_Del("insert into question_master(queDesc,queMaxMarks,multipleMap,calcQuesMaxMarks,nCalcQuesMaxMarks,examID,"+coHead+") values('"+request.getParameter("q"+x)+"',"+request.getParameter("qMarks"+x)+","+request.getParameter("multiMap")+","+calcQuesMaxMarks+","+nCalcQuesMaxMarks+","+request.getParameter("exam_id")+","+coVal+");")){
+                    if(con.Ins_Upd_Del("insert into question_master(queDesc,queMaxMarks,multipleMap,calcQuesMaxMarks,nCalcQuesMaxMarks,examID,"+coHead+") values('"+request.getParameter("q"+x)+"',"+request.getParameter("qMarks"+x)+","+request.getParameter("map"+x)+","+calcQuesMaxMarks+","+nCalcQuesMaxMarks+","+request.getParameter("exam_id")+","+coVal+");")){
                         out.println("<script>alert('Question "+x+" inserted......');</script>");
                     }
                     else{
