@@ -120,7 +120,7 @@
                         rs3.beforeFirst();
                         rs5=con.SelectData("select * from exam_master where examID="+request.getParameter("examid2")+";");
                         rs5.next();
-                        float examMaxMarks = rs5.getFloat("maxMarks");
+                        float examMaxMarks = rs5.getFloat("totalMaxMarks");
                         while(x2<=nOfStudents && rs3.next()){
                             rs2.beforeFirst();
                             x=1;
