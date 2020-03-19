@@ -8,6 +8,14 @@
 		<title>ATTAINMENT</title>
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="js/jquery.table2excel.js"></script>
+		<style type="text/css" media="print">
+			.page
+			{
+			-webkit-transform: rotate(-90deg); 
+			-moz-transform:rotate(-90deg);
+			filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+			}
+		</style>
 		<style>
 		table{
 			border-collapse: collapse;
