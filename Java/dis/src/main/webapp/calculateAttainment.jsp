@@ -13,7 +13,7 @@
 			{
 			-webkit-transform: rotate(-90deg); 
 			-moz-transform:rotate(-90deg);
-			filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+			filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 			}
 		</style>
 		<style>
