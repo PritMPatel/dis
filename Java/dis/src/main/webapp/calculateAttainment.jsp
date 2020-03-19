@@ -60,35 +60,37 @@
 				}
 			%>
 			</select><br/>
-            <button name="coselect" value="coselect">Select CO</button><br/>
+            <button id="coselect" name="coselect" value="coselect">Select CO</button><br/>
     	</div>
+
 		<%
 		if(request.getParameter("coselect")!=null){
                         rsCo=con.SelectData("select * from co_master where coID not in(SELECT coID FROM attainment_co,student_master where attainment_co.enrollmentno=student_master.enrollmentno and subjectID="+request.getParameter("subject1")+" and batch="+request.getParameter("batch1")+");");
                         out.println("SubjectID:<input type='number' name='subject_id' value='"+request.getParameter("subjectid")+"'/><br/> ");
                         out.println("Batch:<input type='number' name='batch' value='"+request.getParameter("batch1")+"'/><br/> ");
-                        out.println("CO:<select name='co_id'><br/>");
+                        out.println("CO:<select name='co_id'><option disabled selected>Select CO</option>");
+						out.println("<script type='text/javascript'>$(document).change(function(){$('#subjectid #batch1').attr('disabled','true');}); </script>");
                         while(rsCo.next()){
                             out.println("<option value='"+rsCo.getInt("coID")+"'>"+rsCo.getInt("coSrNo")+" - "+rsCo.getString("coStatement")+"</option>");
                         }
                         out.println("</select></br>");
+						out.println("<button name='viewattain' value='viewattain'>View Attainment</button><br/>");
+						out.println("<a href='calculateAttainment.jsp'><button type='button'>Reset</button></a><br/>");
                     }
-		%>
-		<button name="viewattain" value="viewattain">View Attainment</button><br/><br/>
-		
-		
-		<%
-			if(request.getParameter("viewattain")!=null){
+		if(request.getParameter("viewattain")!=null){
 				out.println("SubjectID:<input type='number' name='subject_id' value='"+request.getParameter("subject_id")+"' disabled/><br/> ");
             	out.println("Batch:<input type='number' name='batch' value='"+request.getParameter("batch")+"' disabled/><br/> ");
-				out.println("CO:<input type='number' name='coid' value='"+request.getParameter("co_id")+"' disabled/><br/><br/>");
-				
+				out.println("CO:<input type='number' name='coid' value='"+request.getParameter("co_id")+"' disabled/><br/>");
+		%>
+		<a href='calculateAttainment.jsp'><button type='button'>Reset</button></a><br/>
+		<%
 				rsCo=con.SelectData("select * from co_master where coID not in(SELECT coID FROM attainment_co,student_master where attainment_co.enrollmentno=student_master.enrollmentno and subjectID="+request.getParameter("subject_id")+" and batch="+request.getParameter("batch")+") and coID="+request.getParameter("co_id")+";");
 				rsCo.next();
 				rsSubject=con.SelectData("select subjectName from subject_master where subjectID="+request.getParameter("subject_id")+";");
 				rsSubject.next();
-				out.println("<button id='exportExcel' value='"+rsSubject.getString("subjectName")+"-CO"+rsCo.getInt("coSrNo")+"-B"+request.getParameter("batch")+"'>Export to Excel</button><br/><br/>");
+				out.println("<button type='button' id='exportExcel' value='"+rsSubject.getString("subjectName")+"-CO"+rsCo.getInt("coSrNo")+"-B"+request.getParameter("batch")+"'>Export to Excel</button><br/><br/>");
 				
+
 				out.println("<table id='attainCalculation'>");
 				out.println("<tr><th bgcolor='#e1e19b'><center><b>Subject</b></center></th><th colspan='4'><center><b>"+rsSubject.getString("subjectName")+"</b></center></th></tr>");
             	out.println("<tr><th bgcolor='#e1e19b'><center><b>Batch</b></center></th><th colspan='4'><center><b>"+request.getParameter("batch")+"</b></center></th></tr>");
@@ -113,7 +115,7 @@
 					out.println("<th colspan='"+rs2.getInt("colspan")+"' bgcolor='gold'><center><b>"+rs2.getString("examName")+"</b></center></th>");
 				}
 				out.println("</tr><tr>");
-				rs3=con.SelectData("select distinctrow typeDescription,examName,queDesc,calcQuesMaxMarks,nCalcQuesMaxMarks from marks_obtained_master,question_master,exam_master,examtype_master where question_master.examID=exam_master.examID and exam_master.examtypeID=examtype_master.examtypeID and question_master.questionID=marks_obtained_master.questionID and marks_obtained_master.questionID in (select question_master.questionID from question_master,exam_master,examtype_master where (select coID from co_master where coID="+request.getParameter("co_id")+") IN (coID1,coID2,coID3,coID4,coID5,coID6,coID7) and question_master.examID=exam_master.examID and exam_master.examTypeID=examtype_master.examTypeID and exam_master.batch="+request.getParameter("batch")+" and exam_master.subjectID="+request.getParameter("subject_id")+") order by enrollmentno,typeDescription,examName,QueDesc;");
+				rs3=con.SelectData("select distinctrow typeDescription,examName,queDesc,round(calcQuesMaxMarks,2) as calcQuesMaxMarks,round(nCalcQuesMaxMarks,2) as nCalcQuesMaxMarks from marks_obtained_master,question_master,exam_master,examtype_master where question_master.examID=exam_master.examID and exam_master.examtypeID=examtype_master.examtypeID and question_master.questionID=marks_obtained_master.questionID and marks_obtained_master.questionID in (select question_master.questionID from question_master,exam_master,examtype_master where (select coID from co_master where coID="+request.getParameter("co_id")+") IN (coID1,coID2,coID3,coID4,coID5,coID6,coID7) and question_master.examID=exam_master.examID and exam_master.examTypeID=examtype_master.examTypeID and exam_master.batch="+request.getParameter("batch")+" and exam_master.subjectID="+request.getParameter("subject_id")+") order by enrollmentno,typeDescription,examName,QueDesc;");
 				while(rs3.next()){
 					out.println("<th colspan='2' bgcolor='lightblue'><center><b>"+rs3.getString("queDesc")+"</b></center></th>");
 				}
@@ -122,9 +124,9 @@
 				while(rs3.next()){
 					out.println("<th colspan='1' bgcolor='lightblue'><center><b>"+rs3.getString("calcQuesMaxMarks")+"</b></center></th><th colspan='1' bgcolor='lightblue'><center><b>"+rs3.getString("nCalcQuesMaxMarks")+"</b></center></th>");
 				}
-				rsTotalCalcMax=con.SelectData("select distinct sum(calcQuesMaxMarks) as calcTotal from (select enrollmentno,typeDescription,examName,queDesc,calcQuesMaxMarks,calcObtainedMarks,nCalcQuesMaxMarks,nCalcObtainedMarks from marks_obtained_master,question_master,exam_master,examtype_master where question_master.examID=exam_master.examID and exam_master.examtypeID=examtype_master.examtypeID and question_master.questionID=marks_obtained_master.questionID and marks_obtained_master.questionID in (select question_master.questionID from question_master,exam_master,examtype_master where (select coID from co_master where coID="+request.getParameter("co_id")+") IN (coID1,coID2,coID3,coID4,coID5,coID6,coID7) and question_master.examID=exam_master.examID and exam_master.examTypeID=examtype_master.examTypeID and exam_master.batch="+request.getParameter("batch")+" and exam_master.subjectID="+request.getParameter("subject_id")+")) as t group by enrollmentno order by enrollmentno,typeDescription,examName,QueDesc;");
+				rsTotalCalcMax=con.SelectData("select distinct round(sum(calcQuesMaxMarks),2) as calcTotal from (select enrollmentno,typeDescription,examName,queDesc,calcQuesMaxMarks,calcObtainedMarks,nCalcQuesMaxMarks,nCalcObtainedMarks from marks_obtained_master,question_master,exam_master,examtype_master where question_master.examID=exam_master.examID and exam_master.examtypeID=examtype_master.examtypeID and question_master.questionID=marks_obtained_master.questionID and marks_obtained_master.questionID in (select question_master.questionID from question_master,exam_master,examtype_master where (select coID from co_master where coID="+request.getParameter("co_id")+") IN (coID1,coID2,coID3,coID4,coID5,coID6,coID7) and question_master.examID=exam_master.examID and exam_master.examTypeID=examtype_master.examTypeID and exam_master.batch="+request.getParameter("batch")+" and exam_master.subjectID="+request.getParameter("subject_id")+")) as t group by enrollmentno order by enrollmentno,typeDescription,examName,QueDesc;");
 				rsTotalCalcMax.next();
-				rsTotalNCalcMax=con.SelectData("select distinct sum(nCalcQuesMaxMarks) as nCalcTotal from (select enrollmentno,typeDescription,examName,queDesc,calcQuesMaxMarks,calcObtainedMarks,nCalcQuesMaxMarks,nCalcObtainedMarks from marks_obtained_master,question_master,exam_master,examtype_master where question_master.examID=exam_master.examID and exam_master.examtypeID=examtype_master.examtypeID and question_master.questionID=marks_obtained_master.questionID and marks_obtained_master.questionID in (select question_master.questionID from question_master,exam_master,examtype_master where (select coID from co_master where coID="+request.getParameter("co_id")+") IN (coID1,coID2,coID3,coID4,coID5,coID6,coID7) and question_master.examID=exam_master.examID and exam_master.examTypeID=examtype_master.examTypeID and exam_master.batch="+request.getParameter("batch")+" and exam_master.subjectID="+request.getParameter("subject_id")+")) as t group by enrollmentno order by enrollmentno,typeDescription,examName,QueDesc;");
+				rsTotalNCalcMax=con.SelectData("select distinct round(sum(nCalcQuesMaxMarks),2) as nCalcTotal from (select enrollmentno,typeDescription,examName,queDesc,calcQuesMaxMarks,calcObtainedMarks,nCalcQuesMaxMarks,nCalcObtainedMarks from marks_obtained_master,question_master,exam_master,examtype_master where question_master.examID=exam_master.examID and exam_master.examtypeID=examtype_master.examtypeID and question_master.questionID=marks_obtained_master.questionID and marks_obtained_master.questionID in (select question_master.questionID from question_master,exam_master,examtype_master where (select coID from co_master where coID="+request.getParameter("co_id")+") IN (coID1,coID2,coID3,coID4,coID5,coID6,coID7) and question_master.examID=exam_master.examID and exam_master.examTypeID=examtype_master.examTypeID and exam_master.batch="+request.getParameter("batch")+" and exam_master.subjectID="+request.getParameter("subject_id")+")) as t group by enrollmentno order by enrollmentno,typeDescription,examName,QueDesc;");
 				rsTotalNCalcMax.next();
 				out.println("<th rowspan='1' bgcolor='peachpuff'><center><b>"+rsTotalCalcMax.getFloat("calcTotal")+"</b></center></th>");
 				out.println("<th rowspan='1' bgcolor='peachpuff'><center><b>"+rsTotalNCalcMax.getFloat("nCalcTotal")+"</b></center></th>");
@@ -133,11 +135,11 @@
 				while(rs4.next()){
 					out.println("<tr>");
 					out.println("<td bgcolor='#e1e19b'><center><b>"+rs4.getString("enrollmentno")+"</b></center></td>");
-					rs5=con.SelectData("select enrollmentno,typeDescription,examName,queDesc,calcObtainedMarks,nCalcObtainedMarks from marks_obtained_master,question_master,exam_master,examtype_master where enrollmentno=\""+rs4.getString("enrollmentno")+"\" and question_master.examID=exam_master.examID and exam_master.examtypeID=examtype_master.examtypeID and question_master.questionID=marks_obtained_master.questionID and marks_obtained_master.questionID in (select question_master.questionID from question_master,exam_master,examtype_master where (select coID from co_master where coID="+request.getParameter("co_id")+") IN (coID1,coID2,coID3,coID4,coID5,coID6,coID7) and question_master.examID=exam_master.examID and exam_master.examTypeID=examtype_master.examTypeID and exam_master.batch="+request.getParameter("batch")+" and exam_master.subjectID="+request.getParameter("subject_id")+")  order by enrollmentno,typeDescription,examName,QueDesc;");
+					rs5=con.SelectData("select enrollmentno,typeDescription,examName,queDesc,round(calcObtainedMarks,2) as calcObtainedMarks,round(nCalcObtainedMarks,2) as nCalcObtainedMarks from marks_obtained_master,question_master,exam_master,examtype_master where enrollmentno=\""+rs4.getString("enrollmentno")+"\" and question_master.examID=exam_master.examID and exam_master.examtypeID=examtype_master.examtypeID and question_master.questionID=marks_obtained_master.questionID and marks_obtained_master.questionID in (select question_master.questionID from question_master,exam_master,examtype_master where (select coID from co_master where coID="+request.getParameter("co_id")+") IN (coID1,coID2,coID3,coID4,coID5,coID6,coID7) and question_master.examID=exam_master.examID and exam_master.examTypeID=examtype_master.examTypeID and exam_master.batch="+request.getParameter("batch")+" and exam_master.subjectID="+request.getParameter("subject_id")+")  order by enrollmentno,typeDescription,examName,QueDesc;");
 					while(rs5.next()){
 						out.println("<td colspan=2><center>"+rs5.getFloat("calcObtainedMarks")+"</center></td>");
 					}
-					rs6=con.SelectData("select enrollmentno,totalCalcObt,totalNCalcObt,totalNCalcObt*100/maxNCalcObt as attainPercent from (select enrollmentno,sum(calcQuesMaxMarks),sum(calcObtainedMarks) as totalCalcObt,sum(nCalcQuesMaxMarks) as maxNCalcObt,sum(nCalcObtainedMarks) as totalNCalcObt from (select enrollmentno,typeDescription,examName,queDesc,calcQuesMaxMarks,calcObtainedMarks,nCalcQuesMaxMarks,nCalcObtainedMarks from marks_obtained_master,question_master,exam_master,examtype_master where enrollmentno=\""+rs4.getString("enrollmentno")+"\" and question_master.examID=exam_master.examID and exam_master.examtypeID=examtype_master.examtypeID and question_master.questionID=marks_obtained_master.questionID and marks_obtained_master.questionID in (select question_master.questionID from question_master,exam_master,examtype_master where (select coID from co_master where coID="+request.getParameter("co_id")+") IN (coID1,coID2,coID3,coID4,coID5,coID6,coID7) and question_master.examID=exam_master.examID and exam_master.examTypeID=examtype_master.examTypeID and exam_master.batch="+request.getParameter("batch")+" and exam_master.subjectID="+request.getParameter("subject_id")+")) as t group by enrollmentno order by enrollmentno,typeDescription,examName,QueDesc) as t;");
+					rs6=con.SelectData("select enrollmentno,round(totalCalcObt,2) as totalCalcObt,round(totalNCalcObt,2) as totalNCalcObt,round(totalNCalcObt*100/maxNCalcObt,2) as attainPercent from (select enrollmentno,sum(calcQuesMaxMarks),sum(calcObtainedMarks) as totalCalcObt,sum(nCalcQuesMaxMarks) as maxNCalcObt,sum(nCalcObtainedMarks) as totalNCalcObt from (select enrollmentno,typeDescription,examName,queDesc,calcQuesMaxMarks,calcObtainedMarks,nCalcQuesMaxMarks,nCalcObtainedMarks from marks_obtained_master,question_master,exam_master,examtype_master where enrollmentno=\""+rs4.getString("enrollmentno")+"\" and question_master.examID=exam_master.examID and exam_master.examtypeID=examtype_master.examtypeID and question_master.questionID=marks_obtained_master.questionID and marks_obtained_master.questionID in (select question_master.questionID from question_master,exam_master,examtype_master where (select coID from co_master where coID="+request.getParameter("co_id")+") IN (coID1,coID2,coID3,coID4,coID5,coID6,coID7) and question_master.examID=exam_master.examID and exam_master.examTypeID=examtype_master.examTypeID and exam_master.batch="+request.getParameter("batch")+" and exam_master.subjectID="+request.getParameter("subject_id")+")) as t group by enrollmentno order by enrollmentno,typeDescription,examName,QueDesc) as t;");
 					if(rs6.next()){
 						out.println("<td colspan=1 bgcolor='peachpuff'><center>"+rs6.getFloat("totalCalcObt")+"</center></td>");
 						out.println("<td colspan=1 bgcolor='peachpuff'><center>"+rs6.getFloat("totalNCalcObt")+"</center></td>");
