@@ -89,9 +89,9 @@
 				rsSubject=con.SelectData("select subjectName from subject_master where subjectID="+request.getParameter("subject_id")+";");
 				rsSubject.next();
 				out.println("<button type='button' id='exportExcel' value='"+rsSubject.getString("subjectName")+"-CO"+rsCo.getInt("coSrNo")+"-B"+request.getParameter("batch")+"'>Export to Excel</button><br/><br/>");
-				
+				out.println("<button type='button' onclick='printDiv();'>Print</button>");
 
-				out.println("<table id='attainCalculation'>");
+				out.println("<div id='attainment'><table id='attainCalculation'>");
 				out.println("<tr><th bgcolor='#e1e19b'><center><b>Subject</b></center></th><th colspan='4'><center><b>"+rsSubject.getString("subjectName")+"</b></center></th></tr>");
             	out.println("<tr><th bgcolor='#e1e19b'><center><b>Batch</b></center></th><th colspan='4'><center><b>"+request.getParameter("batch")+"</b></center></th></tr>");
 				out.println("<tr><th bgcolor='#e1e19b'><center><b>CO</b></center></th><th colspan='4'><center><b>"+request.getParameter("co_id")+"</b></center></th></tr>");
@@ -159,13 +159,25 @@
 					out.println("</tr>");
 				}
 
-				out.println("</table>");
+				out.println("</table></div>");
 			}
 		%>
 
 		</form>
 	</body>
 	<script type="text/javascript">
+	function printDiv() {
+                    var divName= "attainment";
+
+                     var printContents = document.getElementById(divName).innerHTML;
+                     var originalContents = document.body.innerHTML;
+
+                     document.body.innerHTML = printContents;
+
+                     window.print();
+
+                     document.body.innerHTML = originalContents;
+                }
 	$(function() {
 				$("#exportExcel").click(function(){
 				var name= $("#exportExcel").val();
